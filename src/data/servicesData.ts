@@ -424,15 +424,15 @@ export const amcServices = [
 export const projectsShowcase: ProjectShowcase[] = [
   {
     id: 'proj-1',
-    titleEn: 'Residential Split AC Servicing & Restoration',
-    titleHi: 'रेजिडेंशियल स्प्लिट एसी सर्विसिंग एवं रीस्टोरेशन',
-    categoryEn: 'Residential Cooling',
-    categoryHi: 'घरेलू कूलिंग',
-    image: '/images/split-ac.jpg',
-    descEn: 'High-pressure jet wash, blower balancing, and leak rectification for multiple inverter split units.',
-    descHi: 'मल्टीपल इन्वर्टर स्प्लिट यूनिट्स हेतु हाई-प्रेशर जेट वॉश, ब्लोअर बैलेंसिंग और लीकेज सुधार।',
-    specsEn: ['3x Inverter Split ACs', 'Pressure Jet Wash', 'Pure R32 Gas Refill', 'Zero Room Spillage'],
-    specsHi: ['3x इन्वर्टर स्प्लिट एसी', 'प्रेशर जेट वॉश', 'शुद्ध R32 गैस रीफिल', 'जीरो रूम गंदगी']
+    titleEn: 'Digital Manifold Gas Charging & Leak Diagnosis',
+    titleHi: 'डिजिटल मैनिफोल्ड गैस चार्जिंग एवं लीक डायग्नोसिस',
+    categoryEn: 'Refrigerant & Pressure',
+    categoryHi: 'रेफ्रिजरेंट एवं प्रेशर टेस्टिंग',
+    image: '/images/gas-charging.jpg',
+    descEn: 'Nitrogen leak testing up to 400 PSI, deep evacuation with two-stage vacuum pump, and precision R32 weight charging.',
+    descHi: '400 PSI तक नाइट्रोजन प्रेशर लीकेज टेस्ट, डीप वैक्यूमिंग और वजन के अनुसार सटीक R32 गैस चार्जिंग।',
+    specsEn: ['Digital Manifold Gauges', 'Pure Refrigerant by Weight', 'Nitrogen Hold Test', 'Micron Vacuuming'],
+    specsHi: ['डिजिटल मैनिफोल्ड गेज', 'वजन के अनुसार शुद्ध गैस', 'नाइट्रोजन होल्ड टेस्ट', 'माइक्रोन वैक्यूमिंग']
   },
   {
     id: 'proj-2',
@@ -448,18 +448,6 @@ export const projectsShowcase: ProjectShowcase[] = [
   },
   {
     id: 'proj-3',
-    titleEn: 'Industrial Water-Cooled Chiller System Maintenance',
-    titleHi: 'औद्योगिक वॉटर-कूल्ड चिलर सिस्टम मेंटेनेंस',
-    categoryEn: 'Manufacturing Facility',
-    categoryHi: 'मैन्युफैक्चरिंग प्लांट',
-    image: '/images/industrial-chiller.jpg',
-    descEn: 'Comprehensive descaling of shell-and-tube heat exchangers, oil filter change, and sensor calibration.',
-    descHi: 'शेल-एंड-ट्यूब हीट एक्सचेंजर्स की डीस्केलिंग, ऑयल फिल्टर रिप्लेसमेंट और सेंसर कैलिब्रेशन।',
-    specsEn: ['150 TR Water Chiller', 'Condenser Tube Descaling', 'Vibration Harmonic Check', 'Delta-T Optimization'],
-    specsHi: ['150 TR वॉटर चिलर', 'कंडेनसर ट्यूब डीस्केलिंग', 'वाइब्रेशन हार्मोनिक चेक', 'डेल्टा-टी ऑप्टिमाइजेशन']
-  },
-  {
-    id: 'proj-4',
     titleEn: 'Server Room Precision Cooling & Ductwork Overhaul',
     titleHi: 'सर्वर रूम प्रिसिजन कूलिंग एवं डक्टवर्क ओवरहॉल',
     categoryEn: 'Data Infrastructure',
@@ -469,6 +457,18 @@ export const projectsShowcase: ProjectShowcase[] = [
     descHi: 'आईटी सर्वर्स हेतु स्थिर तापमान एवं आर्द्रता नियंत्रण और बैकअप कूलिंग सिस्टम का सुदृढ़ीकरण।',
     specsEn: ['Dual Dedicated Units', 'Static Pressure Tuning', 'Automated Failover Relay', '24/7 Temperature Log'],
     specsHi: ['डुअल डेडिकेटेड यूनिट्स', 'स्टैटिक प्रेशर ट्यूनिंग', 'ऑटोमेटेड फेलओवर रिले', '24/7 टेम्परेचर लॉगिंग']
+  },
+  {
+    id: 'proj-4',
+    titleEn: 'Industrial Water-Cooled Chiller System Maintenance',
+    titleHi: 'औद्योगिक वॉटर-कूल्ड चिलर सिस्टम मेंटेनेंस',
+    categoryEn: 'Manufacturing Facility',
+    categoryHi: 'मैन्युफैक्चरिंग प्लांट',
+    image: '/images/industrial-chiller.jpg',
+    descEn: 'Comprehensive descaling of shell-and-tube heat exchangers, oil filter change, and sensor calibration.',
+    descHi: 'शेल-एंड-ट्यूब हीट एक्सचेंजर्स की डीस्केलिंग, ऑयल फिल्टर रिप्लेसमेंट और सेंसर कैलिब्रेशन।',
+    specsEn: ['150 TR Water Chiller', 'Condenser Tube Descaling', 'Vibration Harmonic Check', 'Delta-T Optimization'],
+    specsHi: ['150 TR वॉटर चिलर', 'कंडेनसर ट्यूब डीस्केलिंग', 'वाइब्रेशन हार्मोनिक चेक', 'डेल्टा-टी ऑप्टिमाइजेशन']
   },
   {
     id: 'proj-5',

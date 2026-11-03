@@ -58,7 +58,7 @@ export const ServiceDetailPage: React.FC = () => {
           titleHi: 'एसी गैस रीफिलिंग एवं लीकेज टेस्टिंग',
           subtitleEn: 'Electronic leak detection, dry nitrogen pressure tests up to 400 PSI, deep evacuation, and pure R32/R410A charging by weight.',
           subtitleHi: 'नाइट्रोजन प्रेशर टेस्ट, डीप वैक्यूमिंग और वजन के अनुसार शुद्ध गैस चार्जिंग।',
-          image: '/images/hero-tech.jpg',
+          image: '/images/gas-charging.jpg',
           badge: 'Pure Gas Charging',
           highlights: gasRefrigerantServices.map(g => ({ title: language === 'en' ? g.titleEn : g.titleHi, desc: language === 'en' ? g.descEn : g.descHi })),
         };
@@ -68,7 +68,7 @@ export const ServiceDetailPage: React.FC = () => {
           titleHi: 'कमर्शियल एचवीएसी इंजीनियरिंग एवं सिस्टम्स',
           subtitleEn: 'Turnkey climate solutions for corporate offices, retail complexes, clinics, and hospitality buildings across Delhi NCR.',
           subtitleHi: 'कॉर्पोरेट दफ्तरों, रिटेल परिसरों और होटलों के लिए संपूर्ण एचवीएसी कूलिंग समाधान।',
-          image: '/images/commercial-vrv.jpg',
+          image: '/images/cassette-ac.jpg',
           badge: 'Corporate Infrastructure',
           highlights: commercialHvacSolutions.slice(0, 8).map(c => ({ title: language === 'en' ? c.titleEn : c.titleHi, desc: language === 'en' ? c.descEn : c.descHi })),
         };

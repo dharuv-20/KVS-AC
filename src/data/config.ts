@@ -6,7 +6,12 @@ export const COMPANY_CONFIG = {
   phoneDisplay: "+91 79828 90653",
   whatsappNumber: "917982890653",
   address: "235/18, Khandsa Marg, Laxmi Garden, Gurugram, Haryana – 122001, India",
-  googleMapsUrl: "https://maps.google.com/?q=235/18,+Khandsa+Marg,+Laxmi+Garden,+Gurugram,+Haryana+122001",
+  googleMapsUrl: "https://maps.app.goo.gl/VmTAscoi7AKshPrW9",
+  googleMapsEmbedUrl: "https://maps.google.com/maps?q=28.4518433,77.0156097&hl=en&z=17&output=embed",
+  coordinates: {
+    lat: 28.4518433,
+    lng: 77.0156097,
+  },
   serviceAreas: ["Gurugram", "Delhi", "Delhi NCR (Noida, Faridabad, Ghaziabad)"],
   categories: ["Residential AC Services", "Commercial AC Services", "Industrial HVAC Services"],
   workforceBadge: "Our Own Trained Technicians",

@@ -113,7 +113,7 @@ export const ServiceLocations: React.FC = () => {
           <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-inner h-[340px] sm:h-[400px] w-full bg-slate-100">
             <iframe
               title="KVS Copper Veins Google Maps Location"
-              src="https://maps.google.com/maps?q=235/18,+Khandsa+Marg,+Laxmi+Garden,+Gurugram,+Haryana+122001&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src={COMPANY_CONFIG.googleMapsEmbedUrl}
               className="w-full h-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

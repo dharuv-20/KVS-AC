@@ -64,23 +64,23 @@ export const ServiceCategories: React.FC = () => {
             </div>
           </div>
 
-          {/* Card 2: Commercial VRV / VRF Systems */}
+          {/* Card 2: Commercial Cassette & VRV Systems */}
           <div className="bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200/80 flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
             <div>
               <h3 className="text-base sm:text-lg font-bold text-navy-900 group-hover:text-blue-600 transition-colors">
-                {language === 'en' ? 'Commercial VRV / VRF Systems' : 'कमर्शियल वीआरवी / वीआरएफ सिस्टम'}
+                {language === 'en' ? 'Cassette & Commercial VRV Systems' : 'कैसेट एवं कमर्शियल वीआरवी सिस्टम'}
               </h3>
               <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
                 {language === 'en'
-                  ? 'Multi-zone corporate climate systems, modular branch selector piping, and electronic expansion valve calibration.'
-                  : 'मल्टी-ज़ोन कॉर्पोरेट कूलिंग, ब्रांच सेलेक्टर पाइपिंग और एक्सपेंशन वाल्व कैलिब्रेशन।'}
+                  ? 'Multi-zone corporate climate systems, 4-way ceiling cassette units, branch piping, and electronic expansion valve calibration.'
+                  : 'मल्टी-ज़ोन कॉर्पोरेट कूलिंग, 4-वे सीलिंग कैसेट यूनिट्स, ब्रांच पाइपिंग और एक्सपेंशन वाल्व कैलिब्रेशन।'}
               </p>
             </div>
 
             <div className="mt-5 rounded-2xl overflow-hidden h-48 sm:h-56 relative bg-slate-200">
               <img
-                src="/images/commercial-vrv.jpg"
-                alt="Commercial HVAC Systems"
+                src="/images/cassette-ac.jpg"
+                alt="Cassette & Commercial VRV Systems"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />

@@ -154,7 +154,7 @@ export const ContactPage: React.FC = () => {
       <section className="h-80 w-full relative">
         <iframe
           title="KVS Copper Veins Location Map"
-          src="https://maps.google.com/maps?q=235/18,+Khandsa+Marg,+Laxmi+Garden,+Gurugram,+Haryana+122001&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          src={COMPANY_CONFIG.googleMapsEmbedUrl}
           className="w-full h-full border-0"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
