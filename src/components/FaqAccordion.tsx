@@ -92,22 +92,27 @@ export const FaqAccordion: React.FC = () => {
                 {language === 'en' ? 'Ask Us a Question' : 'हमसे सवाल पूछें'}
               </button>
 
-              {/* Support Avatar Pill Card at bottom matching Reference */}
+              {/* Support Avatar Pill Card at bottom featuring Founder matching Reference */}
               <div className="pt-4 border-t border-slate-200/80 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
-                  KVS
+                <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-white shadow-md shrink-0 bg-blue-100">
+                  <img
+                    src={COMPANY_CONFIG.founder.image}
+                    alt={COMPANY_CONFIG.founder.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-bold text-navy-900">
-                    {language === 'en' ? 'Still have questions?' : 'क्या अब भी कोई सवाल है?'}
+                  <div className="text-xs font-bold text-navy-900 truncate">
+                    {COMPANY_CONFIG.founder.name}
                   </div>
-                  <div className="text-[11px] text-slate-500">
-                    {language === 'en' ? "Let's talk directly." : 'सीधे संपर्क करें।'}
+                  <div className="text-[10.5px] text-slate-500">
+                    {language === 'en' ? 'Founder & Technical Director' : 'संस्थापक एवं तकनीकी निदेशक'}
                   </div>
                 </div>
                 <a
                   href={`tel:${COMPANY_CONFIG.phoneRaw}`}
-                  className="px-3 py-1.5 rounded-full text-[11px] font-bold text-navy-900 bg-white border border-slate-300 hover:bg-slate-100 shadow-sm shrink-0"
+                  className="px-3.5 py-1.5 rounded-full text-[11px] font-bold text-navy-900 bg-white border border-slate-300 hover:bg-slate-100 shadow-sm shrink-0 transition-colors"
                 >
                   {language === 'en' ? 'Call Now' : 'कॉल करें'}
                 </a>

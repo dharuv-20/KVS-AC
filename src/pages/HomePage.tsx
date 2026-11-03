@@ -4,6 +4,7 @@ import { RepairProblems } from '../components/RepairProblems';
 import { ServiceCategories } from '../components/ServiceCategories';
 import { FindExpertBanner } from '../components/FindExpertBanner';
 import { WhyChooseUs } from '../components/WhyChooseUs';
+import { FounderSection } from '../components/FounderSection';
 import { ProjectsGallery } from '../components/ProjectsGallery';
 import { CustomerReviews } from '../components/CustomerReviews';
 import { FaqAccordion } from '../components/FaqAccordion';
@@ -31,19 +32,22 @@ export const HomePage: React.FC = () => {
       {/* 5. "Why Choose KVS to Repair": Active Card Stack + Tall Photo */}
       <WhyChooseUs />
 
-      {/* 6. "Get Quick Help Access — HVAC Solutions Across Spaces": 3 Tall Cards */}
+      {/* 6. Founder & Technical Leadership: Krishna Chaudhary */}
+      <FounderSection />
+
+      {/* 7. "Get Quick Help Access — HVAC Solutions Across Spaces": 3 Tall Cards */}
       <ProjectsGallery />
 
-      {/* 7. Verified Indian Customer Reviews: 8 Five-Star & 2 Four-Star Reviews */}
+      {/* 8. Verified Indian Customer Reviews: 8 Five-Star & 2 Four-Star Reviews */}
       <CustomerReviews />
 
-      {/* 8. "Questions Answered FAQ": Left Accordion + Right Card with Avatar */}
+      {/* 9. "Questions Answered FAQ": Left Accordion + Right Card with Avatar */}
       <FaqAccordion />
 
-      {/* 9. "KVS Copper Veins Integrated Solutions": Enclosed Family Banner */}
+      {/* 10. "KVS Copper Veins Integrated Solutions": Enclosed Family Banner */}
       <ServiceLocations />
 
-      {/* 10. Contact & Lead Generation Form Section */}
+      {/* 11. Contact & Lead Generation Form Section */}
       <section id="contact-section" className="py-16 md:py-24 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">

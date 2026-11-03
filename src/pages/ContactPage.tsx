@@ -117,6 +117,28 @@ export const ContactPage: React.FC = () => {
                 </div>
               </div>
 
+              {/* Founder Leadership Card */}
+              <div className="bg-slate-50 rounded-3xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex items-center gap-3.5">
+                <div className="relative w-12 h-12 rounded-2xl overflow-hidden border-2 border-white shadow-md shrink-0 bg-blue-100">
+                  <img
+                    src={COMPANY_CONFIG.founder.image}
+                    alt={COMPANY_CONFIG.founder.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-blue-600">
+                    {language === 'en' ? 'Direct Technical Oversight' : 'संस्थापक की सीधी निगरानी'}
+                  </div>
+                  <div className="text-xs font-bold text-navy-900 truncate">
+                    {COMPANY_CONFIG.founder.name}
+                  </div>
+                  <p className="text-[11px] text-slate-500">
+                    {language === 'en' ? 'Founder & Managing Director' : 'संस्थापक एवं प्रबंध निदेशक'}
+                  </p>
+                </div>
+              </div>
+
             </div>
 
             {/* Right Column: Lead Form (Col 7) */}

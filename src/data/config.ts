@@ -10,6 +10,14 @@ export const COMPANY_CONFIG = {
   serviceAreas: ["Gurugram", "Delhi", "Delhi NCR (Noida, Faridabad, Ghaziabad)"],
   categories: ["Residential AC Services", "Commercial AC Services", "Industrial HVAC Services"],
   workforceBadge: "Our Own Trained Technicians",
+  founder: {
+    name: "Krishna Chaudhary",
+    roleEn: "Founder & Managing Director",
+    roleHi: "संस्थापक एवं प्रबंध निदेशक",
+    image: "/images/krishna-chaudhary.jpg",
+    bioEn: "Under the leadership of Krishna Chaudhary, KVS Copper Veins was founded on one clear commitment: delivering genuine engineering excellence and ethical HVAC service across Gurugram and Delhi NCR. By deploying only our own vetted, professionally trained technicians equipped with digital diagnostics, we ensure long-lasting cooling efficiency for every home and commercial facility.",
+    bioHi: "कृष्णा चौधरी के नेतृत्व में, केवीएस कॉपर वेन्स की स्थापना एक स्पष्ट संकल्प पर हुई: गुरुग्राम और दिल्ली एनसीआर में वास्तविक इंजीनियरिंग गुणवत्ता और भरोसेमंद एचवीएसी सेवाएं प्रदान करना। केवल अपने प्रशिक्षित तकनीशियनों और डिजिटल उपकरणों के साथ, हम हर घर और व्यावसायिक संस्थान के लिए स्थायी कूलिंग समाधान सुनिश्चित करते हैं।",
+  },
 
   // Google Forms Integration Configuration
   // When ready, replace null with your Google Forms Action URL and field Entry IDs.

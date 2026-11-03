@@ -3,6 +3,7 @@ import { ShieldCheck, Users, Wrench, MapPin, Phone, CheckCircle2, ArrowRight } f
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG } from '../data/config';
 import { WhyChooseUs } from '../components/WhyChooseUs';
+import { FounderSection } from '../components/FounderSection';
 
 export const AboutPage: React.FC = () => {
   const { language, t, openBookingModal } = useLanguage();
@@ -94,6 +95,9 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Founder Leadership Section */}
+      <FounderSection />
 
       {/* Why Choose Section */}
       <WhyChooseUs />
