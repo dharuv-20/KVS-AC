@@ -135,7 +135,11 @@ export const WhyChooseUs: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group bg-navy-900">
               <img
                 src="/images/why-us.jpg"
-                alt="HVAC Technicians on Duty"
+                alt="KVS Copper Veins HVAC Technicians equipped with digital manifold and vacuum gear in Gurugram"
+                loading="lazy"
+                decoding="async"
+                width={600}
+                height={450}
                 className="w-full h-[400px] sm:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />

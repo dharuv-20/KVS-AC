@@ -1,0 +1,10 @@
+# Cloudflare Pages / Netlify Redirects & HTTPS
+# SPA Single Page App routing fallback
+/*    /index.html   200
+
+# Security Headers (where supported)
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(self "https://maps.google.com"), microphone=()

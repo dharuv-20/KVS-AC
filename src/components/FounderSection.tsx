@@ -48,6 +48,10 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light
                   <img
                     src={founder.image}
                     alt={`${founder.name} - ${language === 'en' ? founder.roleEn : founder.roleHi}`}
+                    loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={480}
                     className="w-full h-[360px] sm:h-[420px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-transparent to-transparent" />

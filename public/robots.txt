@@ -1,0 +1,6 @@
+# robots.txt for KVS Copper Veins Integrated Solutions
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://kvscopperveins.com/sitemap.xml

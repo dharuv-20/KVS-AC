@@ -48,6 +48,7 @@ export const ResidentialServices: React.FC = () => {
                     alt={language === 'en' ? item.nameEn : item.nameHi}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                   <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-copper/90 px-2 py-0.5 rounded">

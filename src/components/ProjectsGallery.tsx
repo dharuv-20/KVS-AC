@@ -65,6 +65,10 @@ export const ProjectsGallery: React.FC = () => {
               <img
                 src={proj.image}
                 alt={language === 'en' ? proj.titleEn : proj.titleHi}
+                loading="lazy"
+                decoding="async"
+                width={400}
+                height={500}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/50 to-transparent" />

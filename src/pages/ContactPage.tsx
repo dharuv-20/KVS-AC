@@ -1,17 +1,64 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Phone, MessageSquare, MapPin, Navigation } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG, getWhatsAppBookingUrl } from '../data/config';
 import { EnquiryForm } from '../components/EnquiryForm';
+import { SEO } from '../components/SEO';
 import { fadeInUp, staggerContainer } from '../utils/motion';
 
 export const ContactPage: React.FC = () => {
   const { language, t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
+  const contactSchema = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": language === 'en' ? "Contact KVS Copper Veins" : "केवीएस कॉपर वेन्स से संपर्क करें",
+    "url": "https://kvscopperveins.com/contact",
+    "description": "Get in touch with KVS Copper Veins Integrated Solutions for residential, commercial, and industrial AC and HVAC services in Gurugram and Delhi NCR.",
+    "mainEntity": {
+      "@type": "HVACBusiness",
+      "name": COMPANY_CONFIG.name,
+      "telephone": COMPANY_CONFIG.phone,
+      "url": "https://kvscopperveins.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "235/18, Khandsa Marg, Laxmi Garden",
+        "addressLocality": "Gurugram",
+        "addressRegion": "Haryana",
+        "postalCode": "122001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": COMPANY_CONFIG.coordinates.lat,
+        "longitude": COMPANY_CONFIG.coordinates.lng
+      },
+      "hasMap": COMPANY_CONFIG.googleMapsUrl,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": COMPANY_CONFIG.phone,
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+      }
+    }
+  }), [language]);
+
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
+      <SEO
+        title={language === 'en' ? "Contact Us & Book AC Service | Gurugram & Delhi NCR" : "संपर्क करें एवं एसी सर्विस बुक करें | गुरुग्राम"}
+        description={
+          language === 'en'
+            ? "Contact KVS Copper Veins Integrated Solutions. Call +91 79828 90653 or book online for fast AC repair, installation, and commercial HVAC maintenance in Gurugram & NCR."
+            : "केवीएस कॉपर वेन्स से संपर्क करें। फोन +91 79828 90653 या ऑनलाइन फॉर्म द्वारा गुरुग्राम एवं दिल्ली एनसीआर में तुरंत एसी रिपेयर व सर्विस बुक करें।"
+        }
+        canonicalPath="/contact"
+        schema={contactSchema}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Enclosed Dark Hero Banner */}
         <motion.div
@@ -153,7 +200,11 @@ export const ContactPage: React.FC = () => {
                 <div className="relative w-12 h-12 rounded-2xl overflow-hidden border-2 border-white shadow-md shrink-0 bg-blue-100">
                   <img
                     src={COMPANY_CONFIG.founder.image}
-                    alt={COMPANY_CONFIG.founder.name}
+                    alt={`${COMPANY_CONFIG.founder.name} - Founder`}
+                    loading="lazy"
+                    decoding="async"
+                    width={48}
+                    height={48}
                     className="w-full h-full object-cover object-top"
                   />
                 </div>

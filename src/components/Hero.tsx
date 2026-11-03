@@ -232,7 +232,11 @@ export const Hero: React.FC = () => {
               >
                 <img
                   src="/images/hero-tech.jpg"
-                  alt="Professional Indian HVAC Technician"
+                  alt="KVS Copper Veins Verified HVAC Technician on duty in Gurugram Delhi NCR"
+                  loading="eager"
+                  decoding="async"
+                  width={600}
+                  height={400}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-transparent to-transparent" />

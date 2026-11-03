@@ -31,7 +31,11 @@ export const Footer: React.FC = () => {
             <Link to="/" className="inline-block">
               <img
                 src="/logo.png"
-                alt="KVS Copper Veins Integrated Solutions"
+                alt="KVS Copper Veins Integrated Solutions Logo"
+                width={140}
+                height={36}
+                loading="lazy"
+                decoding="async"
                 className="h-9 w-auto object-contain"
               />
             </Link>

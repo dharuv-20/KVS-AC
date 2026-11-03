@@ -1,6 +1,7 @@
 export const COMPANY_CONFIG = {
   name: "KVS Copper Veins Integrated Solutions",
   shortName: "KVS Copper Veins",
+  siteUrl: "https://kvscopperveins.com",
   phone: "+91 7982890653",
   phoneRaw: "+917982890653",
   phoneDisplay: "+91 79828 90653",

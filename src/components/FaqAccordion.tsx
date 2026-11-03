@@ -137,7 +137,11 @@ export const FaqAccordion: React.FC = () => {
                 <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-white shadow-md shrink-0 bg-blue-100">
                   <img
                     src={COMPANY_CONFIG.founder.image}
-                    alt={COMPANY_CONFIG.founder.name}
+                    alt={`${COMPANY_CONFIG.founder.name} - Founder`}
+                    loading="lazy"
+                    decoding="async"
+                    width={44}
+                    height={44}
                     className="w-full h-full object-cover object-top"
                   />
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />

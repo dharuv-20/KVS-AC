@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Phone } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { residentialACTypes, repairProblems, servicingServices, installationServices, gasRefrigerantServices, commercialHvacSolutions, amcServices } from '../data/servicesData';
 import { EnquiryForm } from '../components/EnquiryForm';
+import { SEO } from '../components/SEO';
 import { COMPANY_CONFIG } from '../data/config';
 import { fadeInUp, staggerContainer } from '../utils/motion';
 
@@ -110,8 +111,78 @@ export const ServiceDetailPage: React.FC = () => {
 
   const info = getServiceInfo();
 
+  const serviceSchema = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": language === 'en' ? info.titleEn : info.titleHi,
+      "description": language === 'en' ? info.subtitleEn : info.subtitleHi,
+      "provider": {
+        "@type": "HVACBusiness",
+        "name": COMPANY_CONFIG.name,
+        "telephone": COMPANY_CONFIG.phone,
+        "url": "https://kvscopperveins.com",
+        "image": `https://kvscopperveins.com${info.image}`
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Gurugram" },
+        { "@type": "City", "name": "Delhi" },
+        { "@type": "City", "name": "Delhi NCR" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": info.titleEn,
+        "itemListElement": info.highlights.map((h, idx) => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": h.title,
+            "description": h.desc
+          },
+          "position": idx + 1
+        }))
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://kvscopperveins.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://kvscopperveins.com/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": language === 'en' ? info.titleEn : info.titleHi,
+          "item": `https://kvscopperveins.com/services/${slug}`
+        }
+      ]
+    }
+  ], [info, language, slug]);
+
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
+      <SEO
+        title={language === 'en' ? `${info.titleEn} in Gurugram & Delhi NCR` : `${info.titleHi} गुरुग्राम`}
+        description={
+          language === 'en'
+            ? `${info.subtitleEn} Trusted HVAC engineering, genuine parts & fast technician dispatch. Call ${COMPANY_CONFIG.phoneDisplay}.`
+            : `${info.subtitleHi} केवीएस कॉपर वेन्स - प्रमाणित तकनीशियन और त्वरित सेवा। फोन ${COMPANY_CONFIG.phoneDisplay}।`
+        }
+        canonicalPath={`/services/${slug}`}
+        ogImage={info.image}
+        schema={serviceSchema}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Enclosed Dark Hero Banner */}
         <motion.div

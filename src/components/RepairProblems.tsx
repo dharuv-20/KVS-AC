@@ -121,7 +121,11 @@ export const RepairProblems: React.FC = () => {
             <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white mb-[-24px] relative z-20 mx-4 bg-navy-900">
               <img
                 src="/images/team.jpg"
-                alt="KVS Technician Team"
+                alt="KVS Verified Technician Team on duty in Gurugram"
+                loading="lazy"
+                decoding="async"
+                width={400}
+                height={200}
                 className="w-full h-32 sm:h-36 object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-navy-950/20" />

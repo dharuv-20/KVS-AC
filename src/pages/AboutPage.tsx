@@ -1,18 +1,59 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ShieldCheck, Users, Wrench, Phone, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG } from '../data/config';
 import { WhyChooseUs } from '../components/WhyChooseUs';
 import { FounderSection } from '../components/FounderSection';
+import { SEO } from '../components/SEO';
 import { fadeInUp, staggerContainer } from '../utils/motion';
 
 export const AboutPage: React.FC = () => {
   const { language, t, openBookingModal } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
+  const aboutSchema = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": language === 'en' ? "About KVS Copper Veins Integrated Solutions" : "केवीएस कॉपर वेन्स के बारे में",
+    "url": "https://kvscopperveins.com/about",
+    "description": "Learn about KVS Copper Veins Integrated Solutions, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": COMPANY_CONFIG.name,
+      "alternateName": COMPANY_CONFIG.shortName,
+      "url": "https://kvscopperveins.com",
+      "logo": "https://kvscopperveins.com/logo.png",
+      "founder": {
+        "@type": "Person",
+        "name": COMPANY_CONFIG.founder.name,
+        "jobTitle": COMPANY_CONFIG.founder.roleEn,
+        "image": `https://kvscopperveins.com${COMPANY_CONFIG.founder.image}`
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "235/18, Khandsa Marg, Laxmi Garden",
+        "addressLocality": "Gurugram",
+        "addressRegion": "Haryana",
+        "postalCode": "122001",
+        "addressCountry": "IN"
+      }
+    }
+  }), [language]);
+
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
+      <SEO
+        title={language === 'en' ? "About Us | Leading HVAC & AC Engineering Team" : "हमारे बारे में | केवीएस कॉपर वेन्स"}
+        description={
+          language === 'en'
+            ? "Learn about KVS Copper Veins Integrated Solutions, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR."
+            : "केवीएस कॉपर वेन्स और संस्थापक कृष्णा चौधरी के बारे में जानें। अपनी इन-हाउस तकनीशियन टीम और नैतिक इंजीनियरिंग के साथ दिल्ली एनसीआर में विश्वसनीय कूलिंग समाधान।"
+        }
+        canonicalPath="/about"
+        schema={aboutSchema}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Enclosed Dark Hero Banner matching Homepage style */}
         <motion.div
