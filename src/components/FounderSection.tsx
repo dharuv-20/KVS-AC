@@ -1,7 +1,9 @@
 import React from 'react';
-import { ShieldCheck, Award, Phone, CheckCircle2, MessageSquare, Sparkles, UserCheck } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Phone, CheckCircle2, MessageSquare, Sparkles, UserCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG, getWhatsAppBookingUrl } from '../data/config';
+import { fadeInUp, staggerContainer } from '../utils/motion';
 
 interface FounderSectionProps {
   variant?: 'light' | 'dark';
@@ -10,33 +12,43 @@ interface FounderSectionProps {
 export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light' }) => {
   const { language, openBookingModal } = useLanguage();
   const founder = COMPANY_CONFIG.founder;
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className={`py-16 md:py-24 border-t ${variant === 'dark' ? 'bg-[#0c1626] border-navy-800 text-white' : 'bg-white border-slate-100 text-navy-950'}`}>
+    <section className={`py-16 md:py-24 border-t overflow-hidden ${variant === 'dark' ? 'bg-[#0c1626] border-navy-800 text-white' : 'bg-white border-slate-100 text-navy-950'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main 12-Column Responsive Card */}
-        <div className={`max-w-5xl mx-auto rounded-3xl p-6 sm:p-10 lg:p-12 border shadow-sm transition-all ${
-          variant === 'dark'
-            ? 'bg-gradient-to-br from-[#101D32] via-[#14233c] to-[#0c1626] border-navy-700/80'
-            : 'bg-[#F8F9FB] border-slate-200/90'
-        }`}>
+        <motion.div
+          variants={fadeInUp(0, 24)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className={`max-w-5xl mx-auto rounded-3xl p-6 sm:p-10 lg:p-12 border shadow-sm transition-all ${
+            variant === 'dark'
+              ? 'bg-gradient-to-br from-[#101D32] via-[#14233c] to-[#0c1626] border-navy-700/80'
+              : 'bg-[#F8F9FB] border-slate-200/90'
+          }`}
+        >
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Column: Founder Photo Card (Cols 5) */}
-            <div className="lg:col-span-5 flex flex-col items-center">
+            <motion.div
+              variants={fadeInUp(0.1, 20)}
+              className="lg:col-span-5 flex flex-col items-center"
+            >
               <div className="relative w-full max-w-sm">
                 
                 {/* Decorative Background Element */}
                 <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-600 to-copper rounded-[32px] opacity-30 blur-sm pointer-events-none" />
                 
                 {/* Image Container */}
-                <div className="relative rounded-[28px] overflow-hidden bg-white shadow-xl border-2 border-white">
+                <div className="relative rounded-[28px] overflow-hidden bg-white shadow-xl border-2 border-white group">
                   <img
                     src={founder.image}
                     alt={`${founder.name} - ${language === 'en' ? founder.roleEn : founder.roleHi}`}
-                    className="w-full h-[360px] sm:h-[420px] object-cover object-top hover:scale-105 transition-transform duration-700"
+                    className="w-full h-[360px] sm:h-[420px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-transparent to-transparent" />
                   
@@ -63,21 +75,27 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light
                 </div>
 
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Column: Leadership Narrative & Assurances (Cols 7) */}
-            <div className="lg:col-span-7 space-y-5 text-left">
+            <motion.div
+              variants={staggerContainer(0.1, 0.05)}
+              className="lg:col-span-7 space-y-5 text-left"
+            >
               
               {/* Badge */}
-              <div>
+              <motion.div variants={fadeInUp(0, 14)}>
                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200">
                   <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                   <span>{language === 'en' ? "Founder's Vision & Commitment" : 'संस्थापक का संकल्प एवं दृष्टिकोण'}</span>
                 </span>
-              </div>
+              </motion.div>
 
               {/* Heading */}
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-navy-900 leading-tight">
+              <motion.h3
+                variants={fadeInUp(0.05, 16)}
+                className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-navy-900 leading-tight"
+              >
                 {language === 'en' ? (
                   <>
                     "Every space deserves <br />
@@ -89,16 +107,23 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light
                     <span className="text-blue-600">इंजीनियरिंग गुणवत्ता का हकदार है।"</span>
                   </>
                 )}
-              </h3>
+              </motion.h3>
 
               {/* Bio / Message Quote */}
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+              <motion.p
+                variants={fadeInUp(0.1, 16)}
+                className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal"
+              >
                 {language === 'en' ? founder.bioEn : founder.bioHi}
-              </p>
+              </motion.p>
 
               {/* 3 Personal Quality Standards */}
               <div className="space-y-3 pt-2">
-                <div className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                <motion.div
+                  variants={fadeInUp(0.12, 14)}
+                  whileHover={shouldReduceMotion ? {} : { x: 4 }}
+                  className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-xs transition-shadow hover:shadow-sm"
+                >
                   <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs sm:text-sm font-bold text-navy-900">
@@ -110,9 +135,13 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light
                         : 'हम कभी भी आपका काम किसी अज्ञात तीसरे पक्ष या कमीशन एजेंट को नहीं सौंपते।'}
                     </p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                <motion.div
+                  variants={fadeInUp(0.16, 14)}
+                  whileHover={shouldReduceMotion ? {} : { x: 4 }}
+                  className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-xs transition-shadow hover:shadow-sm"
+                >
                   <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs sm:text-sm font-bold text-navy-900">
@@ -124,9 +153,13 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light
                         : 'डिजिटल मैनिफोल्ड गेज, माइक्रोन वैक्यूम पंप और नाइट्रोजन आधारित लीकेज टेस्टिंग।'}
                     </p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                <motion.div
+                  variants={fadeInUp(0.2, 14)}
+                  whileHover={shouldReduceMotion ? {} : { x: 4 }}
+                  className="flex items-start gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-xs transition-shadow hover:shadow-sm"
+                >
                   <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs sm:text-sm font-bold text-navy-900">
@@ -138,43 +171,52 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light
                         : 'काम शुरू होने से पहले खराब पार्ट की वास्तविक स्थिति और पारदर्शी खर्च की जानकारी।'}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="pt-3 flex flex-wrap items-center gap-3">
-                <button
+              {/* Action Buttons with Micro-interactions */}
+              <motion.div
+                variants={fadeInUp(0.22, 14)}
+                className="pt-3 flex flex-wrap items-center gap-3"
+              >
+                <motion.button
                   type="button"
                   onClick={() => openBookingModal('Founder Direct Service Booking')}
-                  className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all active:scale-95 whitespace-nowrap"
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
+                  className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-colors whitespace-nowrap cursor-pointer"
                 >
                   {language === 'en' ? 'Book a Service Today' : 'आज ही सर्विस बुक करें'}
-                </button>
+                </motion.button>
 
-                <a
+                <motion.a
                   href={`tel:${COMPANY_CONFIG.phoneRaw}`}
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
                   className="px-5 py-2.5 rounded-full text-xs font-bold text-navy-900 bg-white hover:bg-slate-100 border border-slate-300 shadow-sm transition-colors flex items-center gap-2 whitespace-nowrap font-mono"
                 >
                   <Phone className="w-3.5 h-3.5 text-blue-600" />
                   <span>{COMPANY_CONFIG.phoneDisplay}</span>
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
                   href={getWhatsAppBookingUrl(`Hello ${founder.name}, I would like to consult regarding AC service for my space.`)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
                   className="px-5 py-2.5 rounded-full text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors flex items-center gap-1.5 whitespace-nowrap"
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
                   <span>{language === 'en' ? 'Direct WhatsApp' : 'व्हाट्सएप संपर्क'}</span>
-                </a>
-              </div>
+                </motion.a>
+              </motion.div>
 
-            </div>
+            </motion.div>
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

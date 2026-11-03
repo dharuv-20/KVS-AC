@@ -44,3 +44,21 @@
   backdrop-filter: blur(8px);
   border: 1px solid rgba(238, 241, 245, 0.8);
 }
+
+/* Performance: Hardware Acceleration */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

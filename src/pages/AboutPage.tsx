@@ -1,18 +1,26 @@
 import React from 'react';
-import { ShieldCheck, Users, Wrench, MapPin, Phone, CheckCircle2, ArrowRight } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ShieldCheck, Users, Wrench, Phone, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG } from '../data/config';
 import { WhyChooseUs } from '../components/WhyChooseUs';
 import { FounderSection } from '../components/FounderSection';
+import { fadeInUp, staggerContainer } from '../utils/motion';
 
 export const AboutPage: React.FC = () => {
   const { language, t, openBookingModal } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB]">
+    <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Enclosed Dark Hero Banner matching Homepage style */}
-        <div className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl border border-navy-800">
+        <motion.div
+          initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl border border-navy-800"
+        >
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 max-w-3xl">
@@ -36,15 +44,24 @@ export const AboutPage: React.FC = () => {
               {t.footer.aboutText}
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* 3 Core Pillars */}
+      {/* 3 Core Pillars with Staggered Entrance */}
       <section className="py-12 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            
-            <div className="p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <motion.div
+            variants={staggerContainer(0.12, 0.05)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+          >
+            <motion.div
+              variants={fadeInUp(0, 20)}
+              whileHover={shouldReduceMotion ? {} : { y: -5 }}
+              className="p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl transition-shadow"
+            >
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                   <Users className="w-6 h-6" />
@@ -52,15 +69,19 @@ export const AboutPage: React.FC = () => {
                 <h3 className="text-base font-bold text-navy-900">
                   {language === 'en' ? 'Our Own Technician Workforce' : 'हमारी अपनी तकनीशियन टीम'}
                 </h3>
-                <p className="mt-2 text-xs text-slate-500 leading-relaxed">
+                <p className="mt-2 text-xs text-slate-500 leading-relaxed font-normal">
                   {language === 'en'
                     ? 'We do not subcontract or outsource your home or office cooling to unverified commission agents. Every technician is accountable, trained in modern inverter technology, and directly supervised.'
                     : 'हम काम किसी कमीशन एजेंट या अनवेरिफाइड तीसरे पक्ष को नहीं सौंपते। प्रत्येक तकनीशियन सीधे हमारे साथ काम करता है और आधुनिक इन्वर्टर तकनीकों में प्रशिक्षित है।'}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+            <motion.div
+              variants={fadeInUp(0.1, 20)}
+              whileHover={shouldReduceMotion ? {} : { y: -5 }}
+              className="p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl transition-shadow"
+            >
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                   <Wrench className="w-6 h-6" />
@@ -68,15 +89,19 @@ export const AboutPage: React.FC = () => {
                 <h3 className="text-base font-bold text-navy-900">
                   {language === 'en' ? 'Authentic Technical Standards' : 'सच्चे तकनीकी मानक'}
                 </h3>
-                <p className="mt-2 text-xs text-slate-500 leading-relaxed">
+                <p className="mt-2 text-xs text-slate-500 leading-relaxed font-normal">
                   {language === 'en'
                     ? 'We prioritize proper diagnostics over quick-fix patchwork. Whether nitrogen leak tests up to 400 PSI or manufacturer-specified dual stage vacuuming, our procedures protect your equipment.'
                     : 'हम सतही जुगाड़ के बजाय समस्या की जड़ का निदान करते हैं। चाहे 400 PSI तक का नाइट्रोजन लीक टेस्ट हो या डीप वैक्यूमिंग, हमारे नियम आपके एसी की सुरक्षा करते हैं।'}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+            <motion.div
+              variants={fadeInUp(0.2, 20)}
+              whileHover={shouldReduceMotion ? {} : { y: -5 }}
+              className="p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl transition-shadow"
+            >
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                   <ShieldCheck className="w-6 h-6" />
@@ -84,15 +109,14 @@ export const AboutPage: React.FC = () => {
                 <h3 className="text-base font-bold text-navy-900">
                   {language === 'en' ? 'Transparent Communication' : 'पारदर्शी संवाद एवं सत्यनिष्ठा'}
                 </h3>
-                <p className="mt-2 text-xs text-slate-500 leading-relaxed">
+                <p className="mt-2 text-xs text-slate-500 leading-relaxed font-normal">
                   {language === 'en'
                     ? 'No fabricated claims or hidden replacement costs. We diagnose genuine faults, show you the damaged part (capacitor, fan motor, or coil leak), and offer straightforward estimates.'
                     : 'कोई झूठे वादे या छिपे हुए खर्चे नहीं। हम खराबी का वास्तविक कारण स्पष्ट दिखाते हैं और उचित लागत का अनुमान प्रस्तुत करते हैं।'}
                 </p>
               </div>
-            </div>
-
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -104,7 +128,13 @@ export const AboutPage: React.FC = () => {
 
       {/* CTA Card matching Reference Banner */}
       <div className="py-12 max-w-5xl mx-auto px-4 w-full">
-        <div className="bg-navy-950 text-white rounded-3xl p-8 sm:p-10 border border-navy-800 text-center space-y-4">
+        <motion.div
+          variants={fadeInUp(0, 24)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="bg-navy-950 text-white rounded-3xl p-8 sm:p-10 border border-navy-800 text-center space-y-4 shadow-xl"
+        >
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
             {language === 'en' ? 'Ready to Work with Reliable HVAC Professionals?' : 'विश्वसनीय एचवीएसी पेशेवरों के साथ काम करने के लिए तैयार हैं?'}
           </h2>
@@ -115,22 +145,26 @@ export const AboutPage: React.FC = () => {
           </p>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-            <button
+            <motion.button
               type="button"
               onClick={() => openBookingModal()}
-              className="px-6 py-3 rounded-full text-xs font-bold text-navy-950 bg-white hover:bg-slate-100 shadow-md transition-all whitespace-nowrap"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
+              className="px-6 py-3 rounded-full text-xs font-bold text-navy-950 bg-white hover:bg-slate-100 shadow-md transition-colors whitespace-nowrap cursor-pointer"
             >
               {t.hero.primaryCta}
-            </button>
-            <a
+            </motion.button>
+            <motion.a
               href={`tel:${COMPANY_CONFIG.phoneRaw}`}
-              className="px-6 py-3 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all flex items-center gap-2 whitespace-nowrap"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
+              className="px-6 py-3 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-colors flex items-center gap-2 whitespace-nowrap font-mono"
             >
               <Phone className="w-4 h-4" />
               <span>{COMPANY_CONFIG.phoneDisplay}</span>
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

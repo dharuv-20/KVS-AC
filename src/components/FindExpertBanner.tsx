@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Phone, ArrowRight, MapPin } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Phone, MapPin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG } from '../data/config';
+import { fadeInUp } from '../utils/motion';
 
 export const FindExpertBanner: React.FC = () => {
   const { language, openBookingModal } = useLanguage();
   const [locationInput, setLocationInput] = useState('');
+  const shouldReduceMotion = useReducedMotion();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -13,17 +16,35 @@ export const FindExpertBanner: React.FC = () => {
   };
 
   return (
-    <section className="py-10 px-4 sm:px-6 lg:px-8 bg-[#F8F9FB]">
+    <section className="py-10 px-4 sm:px-6 lg:px-8 bg-[#F8F9FB] overflow-hidden">
       <div className="max-w-5xl mx-auto">
         
         {/* Enclosed Dark Rounded Card (Exact Match to Reference Banner) */}
-        <div className="relative rounded-3xl overflow-hidden bg-navy-950 text-white shadow-2xl border border-navy-800 p-8 sm:p-12 text-center">
-          
-          {/* Background condensing units photograph with dark overlay */}
+        <motion.div
+          variants={fadeInUp(0, 24)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="relative rounded-3xl overflow-hidden bg-navy-950 text-white shadow-2xl border border-navy-800 p-8 sm:p-12 text-center"
+        >
+          {/* Background condensing units photograph with dark overlay and subtle movement */}
           <div className="absolute inset-0 z-0 opacity-25">
-            <img
+            <motion.img
               src="/images/condenser.jpg"
               alt="Outdoor AC Condenser Units"
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      scale: [1, 1.05, 1],
+                    }
+              }
+              transition={{
+                duration: 16,
+                repeat: Infinity,
+                repeatType: 'mirror',
+                ease: 'easeInOut',
+              }}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-navy-950/85" />
@@ -60,12 +81,14 @@ export const FindExpertBanner: React.FC = () => {
                   onChange={(e) => setLocationInput(e.target.value)}
                   className="w-full bg-transparent px-3 py-1.5 text-xs text-white placeholder:text-slate-400 focus:outline-none"
                 />
-                <button
+                <motion.button
                   type="submit"
-                  className="px-5 py-2 rounded-full text-xs font-bold text-navy-950 bg-white hover:bg-slate-100 shadow transition-all shrink-0 active:scale-95 whitespace-nowrap"
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
+                  className="px-5 py-2 rounded-full text-xs font-bold text-navy-950 bg-white hover:bg-slate-100 shadow transition-colors shrink-0 whitespace-nowrap cursor-pointer"
                 >
                   {language === 'en' ? 'Find Now' : 'खोजें'}
-                </button>
+                </motion.button>
               </div>
             </form>
 
@@ -75,13 +98,16 @@ export const FindExpertBanner: React.FC = () => {
                 className="text-xs text-blue-300 hover:text-white font-medium inline-flex items-center gap-1.5 transition-colors whitespace-nowrap"
               >
                 <Phone className="w-3.5 h-3.5 shrink-0" />
-                <span>{language === 'en' ? 'Or call directly:' : 'या सीधे कॉल करें:'} <strong className="text-white font-bold">{COMPANY_CONFIG.phoneDisplay}</strong></span>
+                <span>
+                  {language === 'en' ? 'Or call directly:' : 'या सीधे कॉल करें:'}{' '}
+                  <strong className="text-white font-bold font-mono">{COMPANY_CONFIG.phoneDisplay}</strong>
+                </span>
               </a>
             </div>
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

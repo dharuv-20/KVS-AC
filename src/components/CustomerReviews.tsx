@@ -1,12 +1,15 @@
 import React, { useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Star, CheckCircle2, ChevronLeft, ChevronRight, MessageSquarePlus } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { indianReviewsList } from '../data/servicesData';
 import { getWhatsAppBookingUrl } from '../data/config';
+import { fadeInUp } from '../utils/motion';
 
 export const CustomerReviews: React.FC = () => {
   const { language, openBookingModal } = useLanguage();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -23,9 +26,15 @@ export const CustomerReviews: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header with Left/Right Controls and No Total Counts */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 max-w-6xl mx-auto">
+        <motion.div
+          variants={fadeInUp(0, 24)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 max-w-6xl mx-auto"
+        >
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-3 shadow-xs">
               <div className="flex items-center text-amber-500">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -57,24 +66,28 @@ export const CustomerReviews: React.FC = () => {
 
           {/* Carousel Left / Right Arrow Controls */}
           <div className="flex items-center gap-2 self-start md:self-end shrink-0">
-            <button
+            <motion.button
               type="button"
               onClick={() => scroll('left')}
-              className="w-10 h-10 rounded-full bg-white hover:bg-slate-100 border border-slate-300 flex items-center justify-center text-navy-900 transition-colors shadow-sm"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.92 }}
+              className="w-10 h-10 rounded-full bg-white hover:bg-slate-100 border border-slate-300 flex items-center justify-center text-navy-900 transition-colors shadow-sm cursor-pointer"
               aria-label="Previous reviews"
             >
               <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               type="button"
               onClick={() => scroll('right')}
-              className="w-10 h-10 rounded-full bg-white hover:bg-slate-100 border border-slate-300 flex items-center justify-center text-navy-900 transition-colors shadow-sm"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.92 }}
+              className="w-10 h-10 rounded-full bg-white hover:bg-slate-100 border border-slate-300 flex items-center justify-center text-navy-900 transition-colors shadow-sm cursor-pointer"
               aria-label="Next reviews"
             >
               <ChevronRight className="w-5 h-5" />
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Horizontal Scrolling Track of All Reviews */}
         <div
@@ -83,9 +96,11 @@ export const CustomerReviews: React.FC = () => {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {indianReviewsList.map((rev) => (
-            <div
+            <motion.div
               key={rev.id}
-              className="w-[320px] sm:w-[380px] shrink-0 snap-start bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between"
+              whileHover={shouldReduceMotion ? {} : { y: -5 }}
+              transition={{ duration: 0.25 }}
+              className="w-[320px] sm:w-[380px] shrink-0 snap-start bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-xl transition-shadow flex flex-col justify-between"
             >
               <div>
                 {/* Header: Customer Info + Stars */}
@@ -143,31 +158,41 @@ export const CustomerReviews: React.FC = () => {
                 </span>
                 <span>{rev.date}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Bottom CTA to Book or Share Feedback */}
-        <div className="text-center max-w-xl mx-auto mt-8 space-y-3">
+        <motion.div
+          variants={fadeInUp(0.15, 16)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="text-center max-w-xl mx-auto mt-8 space-y-3"
+        >
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <button
+            <motion.button
               type="button"
               onClick={() => openBookingModal()}
-              className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow transition-all whitespace-nowrap"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
+              className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow transition-colors whitespace-nowrap cursor-pointer"
             >
               {language === 'en' ? 'Book AC Service Today' : 'आज ही एसी सर्विस बुक करें'}
-            </button>
-            <a
+            </motion.button>
+            <motion.a
               href={getWhatsAppBookingUrl('Hello KVS team, I would like to share feedback regarding my recent AC service.')}
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
               className="px-6 py-2.5 rounded-full text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
             >
               <MessageSquarePlus className="w-3.5 h-3.5 text-blue-600" />
               <span>{language === 'en' ? 'Share Your Experience' : 'अपना अनुभव साझा करें'}</span>
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

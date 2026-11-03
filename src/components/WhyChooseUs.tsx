@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Users, ShieldCheck, Wrench, MapPin, Layers, PhoneCall, ChevronRight, Check } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { Users, Layers, Wrench, MapPin, ChevronRight, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { fadeInUp } from '../utils/motion';
 
 export const WhyChooseUs: React.FC = () => {
   const { language, t } = useLanguage();
   const [activeTab, setActiveTab] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
 
   const features = [
     {
@@ -30,11 +33,17 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white border-t border-slate-100">
+    <section className="py-16 md:py-24 bg-white border-t border-slate-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading matching Reference Image */}
-        <div className="max-w-xl mb-12">
+        <motion.div
+          variants={fadeInUp(0, 24)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="max-w-xl mb-12"
+        >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-navy-900 tracking-tight">
             {language === 'en' ? (
               <>
@@ -53,12 +62,12 @@ export const WhyChooseUs: React.FC = () => {
               ? 'We take pride in our work. Transparent pricing, our own technicians, and technical precision you can count on.'
               : 'हमें अपने काम पर गर्व है। पारदर्शी मूल्य, हमारी अपनी तकनीशियन टीम और भरोसेमंद तकनीकी गुणवत्ता।'}
           </p>
-        </div>
+        </motion.div>
 
         {/* 2-Column Exact Composition from Reference */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
           
-          {/* Left Column: Interactive Feature Stack matching Reference (Cols 6) */}
+          {/* Left Column: Interactive Feature Stack with Smooth Transitions (Cols 6) */}
           <div className="lg:col-span-6 space-y-3.5">
             {features.map((feat, idx) => {
               const isActive = activeTab === idx;
@@ -66,45 +75,63 @@ export const WhyChooseUs: React.FC = () => {
 
               return (
                 <div key={idx} className="transition-all duration-300">
-                  {isActive ? (
-                    // Expanded Dark Active Card (Exact Match to Reference Top Card)
-                    <div className="bg-navy-950 text-white rounded-3xl p-6 shadow-xl border border-navy-800 animate-in fade-in duration-200">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2.5">
-                          <span className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
-                            <Check className="w-3.5 h-3.5 text-white" />
-                          </span>
-                          <h3 className="text-sm font-bold text-white">
-                            {feat.title}
-                          </h3>
+                  <AnimatePresence mode="wait">
+                    {isActive ? (
+                      // Expanded Dark Active Card (Exact Match to Reference Top Card)
+                      <motion.div
+                        key={`active-${idx}`}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.25 }}
+                        className="bg-navy-950 text-white rounded-3xl p-6 shadow-xl border border-navy-800"
+                      >
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2.5">
+                            <span className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
+                              <Check className="w-3.5 h-3.5 text-white" />
+                            </span>
+                            <h3 className="text-sm font-bold text-white">
+                              {feat.title}
+                            </h3>
+                          </div>
                         </div>
-                      </div>
-                      <p className="text-xs text-slate-300 leading-relaxed pl-8">
-                        {feat.desc}
-                      </p>
-                    </div>
-                  ) : (
-                    // Inactive Clean White Pill Card (Exact Match to Reference Inactive Rows)
-                    <div
-                      onClick={() => setActiveTab(idx)}
-                      className="cursor-pointer bg-slate-50 hover:bg-slate-100 rounded-full px-5 py-3.5 border border-slate-200/90 flex items-center justify-between transition-colors shadow-sm"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Icon className="w-4 h-4 text-blue-600 shrink-0" />
-                        <span className="text-xs font-bold text-navy-900">
-                          {feat.title}
-                        </span>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
-                    </div>
-                  )}
+                        <p className="text-xs text-slate-300 leading-relaxed pl-8">
+                          {feat.desc}
+                        </p>
+                      </motion.div>
+                    ) : (
+                      // Inactive Clean White Pill Card (Exact Match to Reference Inactive Rows)
+                      <motion.div
+                        key={`inactive-${idx}`}
+                        whileHover={shouldReduceMotion ? {} : { x: 4 }}
+                        whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                        onClick={() => setActiveTab(idx)}
+                        className="cursor-pointer bg-slate-50 hover:bg-slate-100 rounded-full px-5 py-3.5 border border-slate-200/90 flex items-center justify-between transition-colors shadow-xs"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Icon className="w-4 h-4 text-blue-600 shrink-0" />
+                          <span className="text-xs font-bold text-navy-900">
+                            {feat.title}
+                          </span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
           </div>
 
-          {/* Right Column: Tall Photograph of Technicians interacting with Local Image (Cols 6) */}
-          <div className="lg:col-span-6">
+          {/* Right Column: Tall Photograph of Technicians interacting (Cols 6) */}
+          <motion.div
+            variants={fadeInUp(0.15, 20)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            className="lg:col-span-6"
+          >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group bg-navy-900">
               <img
                 src="/images/why-us.jpg"
@@ -124,7 +151,7 @@ export const WhyChooseUs: React.FC = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

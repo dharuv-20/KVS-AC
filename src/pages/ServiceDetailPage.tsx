@@ -1,14 +1,17 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Phone, Calendar } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowLeft, CheckCircle2, Phone } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { residentialACTypes, repairProblems, servicingServices, installationServices, gasRefrigerantServices, commercialHvacSolutions, amcServices } from '../data/servicesData';
 import { EnquiryForm } from '../components/EnquiryForm';
 import { COMPANY_CONFIG } from '../data/config';
+import { fadeInUp, staggerContainer } from '../utils/motion';
 
 export const ServiceDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { language, openBookingModal } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   const getServiceInfo = () => {
     switch (slug) {
@@ -108,10 +111,15 @@ export const ServiceDetailPage: React.FC = () => {
   const info = getServiceInfo();
 
   return (
-    <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB]">
+    <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Enclosed Dark Hero Banner */}
-        <div className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl border border-navy-800">
+        <motion.div
+          initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl border border-navy-800"
+        >
           <div className="relative z-10 max-w-3xl">
             <Link
               to="/"
@@ -135,25 +143,29 @@ export const ServiceDetailPage: React.FC = () => {
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <button
+                <motion.button
                   type="button"
                   onClick={() => openBookingModal(language === 'en' ? info.titleEn : info.titleHi)}
-                  className="px-6 py-3 rounded-full text-xs font-bold text-navy-950 bg-white hover:bg-slate-100 shadow-md transition-all whitespace-nowrap"
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
+                  className="px-6 py-3 rounded-full text-xs font-bold text-navy-950 bg-white hover:bg-slate-100 shadow-md transition-colors whitespace-nowrap cursor-pointer"
                 >
                   {language === 'en' ? 'Schedule Service' : 'सर्विस शेड्यूल करें'}
-                </button>
+                </motion.button>
 
-                <a
+                <motion.a
                   href={`tel:${COMPANY_CONFIG.phoneRaw}`}
-                  className="px-6 py-3 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all flex items-center gap-2 whitespace-nowrap"
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.96 }}
+                  className="px-6 py-3 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-colors flex items-center gap-2 whitespace-nowrap font-mono"
                 >
                   <Phone className="w-4 h-4" />
                   <span>{COMPANY_CONFIG.phoneDisplay}</span>
-                </a>
+                </motion.a>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Scope Breakdown */}
@@ -170,18 +182,26 @@ export const ServiceDetailPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div
+            variants={staggerContainer(0.08, 0.04)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
             {info.highlights.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between"
+                variants={fadeInUp(idx * 0.05, 16)}
+                whileHover={shouldReduceMotion ? {} : { y: -4 }}
+                className="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md transition-all"
               >
                 <div>
                   <div className="flex items-center gap-2 text-navy-900 font-bold text-sm mb-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>{item.title}</span>
                   </div>
-                  <p className="text-xs text-slate-500 leading-relaxed">
+                  <p className="text-xs text-slate-500 leading-relaxed font-normal">
                     {item.desc}
                   </p>
                 </div>
@@ -191,14 +211,14 @@ export const ServiceDetailPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => openBookingModal(item.title)}
-                    className="text-xs font-bold text-blue-600 hover:underline"
+                    className="text-xs font-bold text-blue-600 hover:underline cursor-pointer"
                   >
                     {language === 'en' ? 'Book' : 'बुक करें'}
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

@@ -1,17 +1,25 @@
 import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Phone, MessageSquare, MapPin, Navigation } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG, getWhatsAppBookingUrl } from '../data/config';
 import { EnquiryForm } from '../components/EnquiryForm';
+import { fadeInUp, staggerContainer } from '../utils/motion';
 
 export const ContactPage: React.FC = () => {
   const { language, t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB]">
+    <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Enclosed Dark Hero Banner */}
-        <div className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 text-center max-w-5xl mx-auto overflow-hidden shadow-2xl border border-navy-800">
+        <motion.div
+          initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 text-center max-w-5xl mx-auto overflow-hidden shadow-2xl border border-navy-800"
+        >
           <div className="relative z-10 max-w-2xl mx-auto space-y-3">
             <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-blue-300 bg-white/10 border border-white/15">
               {language === 'en' ? 'Get In Touch' : 'संपर्क करें'}
@@ -31,7 +39,7 @@ export const ContactPage: React.FC = () => {
               {t.contact.subtitle}
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Main Content: Info Cards & Form */}
@@ -40,10 +48,19 @@ export const ContactPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
             
             {/* Left Column: Direct Contact Info (Col 5) */}
-            <div className="lg:col-span-5 space-y-4">
-              
+            <motion.div
+              variants={staggerContainer(0.1, 0.05)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              className="lg:col-span-5 space-y-4"
+            >
               {/* Phone Card */}
-              <div className="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-sm">
+              <motion.div
+                variants={fadeInUp(0, 16)}
+                whileHover={shouldReduceMotion ? {} : { y: -4 }}
+                className="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-all"
+              >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
                     <Phone className="w-6 h-6" />
@@ -63,10 +80,14 @@ export const ContactPage: React.FC = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* WhatsApp Card */}
-              <div className="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-sm">
+              <motion.div
+                variants={fadeInUp(0.08, 16)}
+                whileHover={shouldReduceMotion ? {} : { y: -4 }}
+                className="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-all"
+              >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                     <MessageSquare className="w-6 h-6" />
@@ -78,21 +99,27 @@ export const ContactPage: React.FC = () => {
                     <p className="text-xs text-slate-500 mt-0.5">
                       {language === 'en' ? 'Send photos, problem videos, or live location' : 'फोटो, समस्या का वीडियो या लोकेशन भेजें'}
                     </p>
-                    <a
+                    <motion.a
                       href={getWhatsAppBookingUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-full transition-colors whitespace-nowrap shadow-sm"
+                      whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                      whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-full transition-colors whitespace-nowrap shadow-sm cursor-pointer"
                     >
                       <MessageSquare className="w-3.5 h-3.5" />
                       <span>{t.contact.whatsappNow}</span>
-                    </a>
+                    </motion.a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Workshop Address Card */}
-              <div className="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-sm">
+              <motion.div
+                variants={fadeInUp(0.16, 16)}
+                whileHover={shouldReduceMotion ? {} : { y: -4 }}
+                className="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-all"
+              >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-navy-100 text-navy-900 flex items-center justify-center shrink-0">
                     <MapPin className="w-6 h-6 text-blue-600" />
@@ -115,10 +142,14 @@ export const ContactPage: React.FC = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Founder Leadership Card */}
-              <div className="bg-slate-50 rounded-3xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex items-center gap-3.5">
+              <motion.div
+                variants={fadeInUp(0.24, 16)}
+                whileHover={shouldReduceMotion ? {} : { y: -4 }}
+                className="bg-slate-50 rounded-3xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex items-center gap-3.5 hover:shadow-md transition-all"
+              >
                 <div className="relative w-12 h-12 rounded-2xl overflow-hidden border-2 border-white shadow-md shrink-0 bg-blue-100">
                   <img
                     src={COMPANY_CONFIG.founder.image}
@@ -137,14 +168,19 @@ export const ContactPage: React.FC = () => {
                     {language === 'en' ? 'Founder & Managing Director' : 'संस्थापक एवं प्रबंध निदेशक'}
                   </p>
                 </div>
-              </div>
-
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Right Column: Lead Form (Col 7) */}
-            <div className="lg:col-span-7">
+            <motion.div
+              variants={fadeInUp(0.1, 20)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              className="lg:col-span-7"
+            >
               <EnquiryForm />
-            </div>
+            </motion.div>
 
           </div>
         </div>
