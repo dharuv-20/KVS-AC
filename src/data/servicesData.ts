@@ -652,7 +652,7 @@ export const indianReviewsList: ReviewItem[] = [
     date: '2 months ago',
     acType: 'Industrial Modular VRF (24 HP)',
     verified: true,
-    reviewEn: 'KVS Copper Veins handles our factory clean-room cooling. Their technical depth on screw chillers, VRF branch piping, and oil return cycles is superior to commercial aggregators. Highly recommended for industrial facilities.',
+    reviewEn: 'KVS Cooper Vains handles our factory clean-room cooling. Their technical depth on screw chillers, VRF branch piping, and oil return cycles is superior to commercial aggregators. Highly recommended for industrial facilities.',
     reviewHi: 'हमारी फैक्ट्री के क्लीन रूम कूलिंग को केवीएस टीम संभालती है। चिलर्स और वीआरएफ सिस्टम्स में इनका तकनीकी ज्ञान सामान्य मैकेनिकों से कहीं आगे है।'
   },
   {

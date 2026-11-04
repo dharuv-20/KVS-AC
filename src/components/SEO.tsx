@@ -18,11 +18,11 @@ export const SEO: React.FC<SEOProps> = ({
   schema,
 }) => {
   const location = useLocation();
-  const baseUrl = COMPANY_CONFIG.siteUrl || 'https://kvscopperveins.com';
+  const baseUrl = COMPANY_CONFIG.siteUrl || 'https://kvscoopervains.com';
 
   const finalTitle = title
-    ? `${title} | KVS Copper Veins`
-    : 'KVS Copper Veins | Reliable AC & HVAC Solutions in Gurugram & Delhi NCR';
+    ? `${title} | KVS Cooper Vains`
+    : 'KVS Cooper Vains | Reliable AC & HVAC Solutions in Gurugram & Delhi NCR';
 
   const finalDescription =
     description ||

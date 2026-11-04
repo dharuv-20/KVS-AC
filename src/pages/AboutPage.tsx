@@ -15,20 +15,20 @@ export const AboutPage: React.FC = () => {
   const aboutSchema = useMemo(() => ({
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": language === 'en' ? "About KVS Copper Veins Integrated Solutions" : "केवीएस कॉपर वेन्स के बारे में",
-    "url": "https://kvscopperveins.com/about",
-    "description": "Learn about KVS Copper Veins Integrated Solutions, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR.",
+    "name": language === 'en' ? `About ${COMPANY_CONFIG.name}` : `केवीएस कूपर वैन्स के बारे में`,
+    "url": `${COMPANY_CONFIG.siteUrl}/about`,
+    "description": `Learn about ${COMPANY_CONFIG.name}, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR.`,
     "mainEntity": {
       "@type": "Organization",
       "name": COMPANY_CONFIG.name,
       "alternateName": COMPANY_CONFIG.shortName,
-      "url": "https://kvscopperveins.com",
-      "logo": "https://kvscopperveins.com/logo.png",
+      "url": COMPANY_CONFIG.siteUrl,
+      "logo": `${COMPANY_CONFIG.siteUrl}/logo.png`,
       "founder": {
         "@type": "Person",
         "name": COMPANY_CONFIG.founder.name,
         "jobTitle": COMPANY_CONFIG.founder.roleEn,
-        "image": `https://kvscopperveins.com${COMPANY_CONFIG.founder.image}`
+        "image": `${COMPANY_CONFIG.siteUrl}${COMPANY_CONFIG.founder.image}`
       },
       "address": {
         "@type": "PostalAddress",
@@ -44,11 +44,11 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
       <SEO
-        title={language === 'en' ? "About Us | Leading HVAC & AC Engineering Team" : "हमारे बारे में | केवीएस कॉपर वेन्स"}
+        title={language === 'en' ? "About Us | Leading HVAC & AC Engineering Team" : "हमारे बारे में | केवीएस कूपर वैन्स"}
         description={
           language === 'en'
-            ? "Learn about KVS Copper Veins Integrated Solutions, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR."
-            : "केवीएस कॉपर वेन्स और संस्थापक कृष्णा चौधरी के बारे में जानें। अपनी इन-हाउस तकनीशियन टीम और नैतिक इंजीनियरिंग के साथ दिल्ली एनसीआर में विश्वसनीय कूलिंग समाधान।"
+            ? `Learn about ${COMPANY_CONFIG.name}, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR.`
+            : "केवीएस कूपर वैन्स और संस्थापक कृष्णा चौधरी के बारे में जानें। अपनी इन-हाउस तकनीशियन टीम और नैतिक इंजीनियरिंग के साथ दिल्ली एनसीआर में विश्वसनीय कूलिंग समाधान।"
         }
         canonicalPath="/about"
         schema={aboutSchema}
@@ -66,7 +66,7 @@ export const AboutPage: React.FC = () => {
           
           <div className="relative z-10 max-w-3xl">
             <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-blue-300 bg-white/10 border border-white/15 mb-4">
-              {language === 'en' ? 'About KVS Copper Veins' : 'केवीएस कॉपर वेन्स के बारे में'}
+              {language === 'en' ? `About ${COMPANY_CONFIG.shortName}` : 'केवीएस कूपर वैन्स के बारे में'}
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
               {language === 'en' ? (

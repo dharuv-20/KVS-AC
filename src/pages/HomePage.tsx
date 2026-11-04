@@ -22,12 +22,12 @@ export const HomePage: React.FC = () => {
     {
       "@context": "https://schema.org",
       "@type": "HVACBusiness",
-      "@id": "https://kvscopperveins.com/#business",
+      "@id": `${COMPANY_CONFIG.siteUrl}/#business`,
       "name": COMPANY_CONFIG.name,
       "alternateName": COMPANY_CONFIG.shortName,
-      "url": "https://kvscopperveins.com",
-      "logo": "https://kvscopperveins.com/logo.png",
-      "image": "https://kvscopperveins.com/og-image.jpg",
+      "url": COMPANY_CONFIG.siteUrl,
+      "logo": `${COMPANY_CONFIG.siteUrl}/logo.png`,
+      "image": `${COMPANY_CONFIG.siteUrl}/og-image.jpg`,
       "description": "Professional residential, commercial and industrial AC & HVAC repair, installation, maintenance & AMC services in Gurugram and Delhi NCR.",
       "telephone": COMPANY_CONFIG.phone,
       "priceRange": "₹₹",
@@ -127,7 +127,7 @@ export const HomePage: React.FC = () => {
       {/* 9. "Questions Answered FAQ": Left Accordion + Right Card with Avatar */}
       <FaqAccordion />
 
-      {/* 10. "KVS Copper Veins Integrated Solutions": Enclosed Family Banner */}
+      {/* 10. "KVS Cooper Vains Integrated Solutions": Enclosed Family Banner */}
       <ServiceLocations />
 
       {/* 11. Contact & Lead Generation Form Section */}

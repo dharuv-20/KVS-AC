@@ -232,7 +232,7 @@ export const Hero: React.FC = () => {
               >
                 <img
                   src="/images/hero-tech.jpg"
-                  alt="KVS Copper Veins Verified HVAC Technician on duty in Gurugram Delhi NCR"
+                  alt="KVS Cooper Vains Verified HVAC Technician on duty in Gurugram Delhi NCR"
                   loading="eager"
                   decoding="async"
                   width={600}

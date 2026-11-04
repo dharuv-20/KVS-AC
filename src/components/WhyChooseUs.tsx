@@ -135,7 +135,7 @@ export const WhyChooseUs: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group bg-navy-900">
               <img
                 src="/images/why-us.jpg"
-                alt="KVS Copper Veins HVAC Technicians equipped with digital manifold and vacuum gear in Gurugram"
+                alt="KVS Cooper Vains HVAC Technicians equipped with digital manifold and vacuum gear in Gurugram"
                 loading="lazy"
                 decoding="async"
                 width={600}

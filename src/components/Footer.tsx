@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
       
       {/* Subtle Watermark Text in Background matching Reference Footer */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[90px] sm:text-[140px] lg:text-[180px] font-extrabold text-slate-100 select-none pointer-events-none tracking-tighter whitespace-nowrap opacity-60 z-0">
-        KVS COPPER VEINS
+        KVS COOPER VAINS
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
             <Link to="/" className="inline-block">
               <img
                 src="/logo.png"
-                alt="KVS Copper Veins Integrated Solutions Logo"
+                alt="KVS Cooper Vains Integrated Solutions Logo"
                 width={140}
                 height={36}
                 loading="lazy"
@@ -204,7 +204,7 @@ export const Footer: React.FC = () => {
           <div className="bg-white text-slate-900 rounded-3xl max-w-lg w-full p-6 shadow-2xl">
             <h3 className="text-base font-bold text-navy-900 mb-2">{t.footer.privacyPolicy}</h3>
             <p className="text-xs text-slate-600 leading-relaxed mb-4">
-              KVS Copper Veins Integrated Solutions values your privacy. We use contact details provided through our website enquiry form or direct calls strictly to schedule technician visits and deliver HVAC services.
+              KVS Cooper Vains Integrated Solutions values your privacy. We use contact details provided through our website enquiry form or direct calls strictly to schedule technician visits and deliver HVAC services.
             </p>
             <button
               type="button"
@@ -222,7 +222,7 @@ export const Footer: React.FC = () => {
           <div className="bg-white text-slate-900 rounded-3xl max-w-lg w-full p-6 shadow-2xl">
             <h3 className="text-base font-bold text-navy-900 mb-2">{t.footer.termsOfService}</h3>
             <p className="text-xs text-slate-600 leading-relaxed mb-4">
-              All AC and HVAC services provided by KVS Copper Veins Integrated Solutions are carried out by our own technician team. Diagnosis and estimates are shared prior to replacement of parts.
+              All AC and HVAC services provided by KVS Cooper Vains Integrated Solutions are carried out by our own technician team. Diagnosis and estimates are shared prior to replacement of parts.
             </p>
             <button
               type="button"

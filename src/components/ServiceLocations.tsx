@@ -29,7 +29,7 @@ export const ServiceLocations: React.FC = () => {
             </div>
 
             <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-navy-900 tracking-tight">
-              KVS Copper Veins Integrated Solutions
+              KVS Cooper Vains Integrated Solutions
             </h3>
 
             <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xl font-normal">
@@ -133,7 +133,7 @@ export const ServiceLocations: React.FC = () => {
           {/* Clean Google Map Iframe Container */}
           <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-inner h-[340px] sm:h-[400px] w-full bg-slate-100">
             <iframe
-              title="KVS Copper Veins Google Maps Location"
+              title="KVS Cooper Vains Google Maps Location"
               src={COMPANY_CONFIG.googleMapsEmbedUrl}
               className="w-full h-full border-0"
               loading="lazy"
@@ -144,7 +144,7 @@ export const ServiceLocations: React.FC = () => {
             <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-lg text-navy-900 max-w-xs hidden sm:block">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-blue-600" />
-                <strong className="text-xs font-bold">KVS Copper Veins Hub</strong>
+                <strong className="text-xs font-bold">KVS Cooper Vains Hub</strong>
               </div>
               <p className="text-[11px] text-slate-500 mt-1">
                 Technician dispatch covering all Gurugram sectors & Delhi NCR.

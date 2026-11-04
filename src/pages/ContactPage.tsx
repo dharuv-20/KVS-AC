@@ -14,14 +14,14 @@ export const ContactPage: React.FC = () => {
   const contactSchema = useMemo(() => ({
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": language === 'en' ? "Contact KVS Copper Veins" : "केवीएस कॉपर वेन्स से संपर्क करें",
-    "url": "https://kvscopperveins.com/contact",
-    "description": "Get in touch with KVS Copper Veins Integrated Solutions for residential, commercial, and industrial AC and HVAC services in Gurugram and Delhi NCR.",
+    "name": language === 'en' ? `Contact ${COMPANY_CONFIG.shortName}` : `केवीएस कूपर वैन्स से संपर्क करें`,
+    "url": `${COMPANY_CONFIG.siteUrl}/contact`,
+    "description": `Get in touch with ${COMPANY_CONFIG.name} for residential, commercial, and industrial AC and HVAC services in Gurugram and Delhi NCR.`,
     "mainEntity": {
       "@type": "HVACBusiness",
       "name": COMPANY_CONFIG.name,
       "telephone": COMPANY_CONFIG.phone,
-      "url": "https://kvscopperveins.com",
+      "url": COMPANY_CONFIG.siteUrl,
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "235/18, Khandsa Marg, Laxmi Garden",
@@ -52,8 +52,8 @@ export const ContactPage: React.FC = () => {
         title={language === 'en' ? "Contact Us & Book AC Service | Gurugram & Delhi NCR" : "संपर्क करें एवं एसी सर्विस बुक करें | गुरुग्राम"}
         description={
           language === 'en'
-            ? "Contact KVS Copper Veins Integrated Solutions. Call +91 79828 90653 or book online for fast AC repair, installation, and commercial HVAC maintenance in Gurugram & NCR."
-            : "केवीएस कॉपर वेन्स से संपर्क करें। फोन +91 79828 90653 या ऑनलाइन फॉर्म द्वारा गुरुग्राम एवं दिल्ली एनसीआर में तुरंत एसी रिपेयर व सर्विस बुक करें।"
+            ? `Contact ${COMPANY_CONFIG.name}. Call +91 79828 90653 or book online for fast AC repair, installation, and commercial HVAC maintenance in Gurugram & NCR.`
+            : "केवीएस कूपर वैन्स से संपर्क करें। फोन +91 79828 90653 या ऑनलाइन फॉर्म द्वारा गुरुग्राम एवं दिल्ली एनसीआर में तुरंत एसी रिपेयर व सर्विस बुक करें।"
         }
         canonicalPath="/contact"
         schema={contactSchema}
@@ -240,7 +240,7 @@ export const ContactPage: React.FC = () => {
       {/* Embedded Map */}
       <section className="h-80 w-full relative">
         <iframe
-          title="KVS Copper Veins Location Map"
+          title="KVS Cooper Vains Location Map"
           src={COMPANY_CONFIG.googleMapsEmbedUrl}
           className="w-full h-full border-0"
           loading="lazy"

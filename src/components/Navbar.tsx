@@ -63,7 +63,7 @@ export const Navbar: React.FC = () => {
             >
               <img
                 src="/logo.png"
-                alt="KVS Copper Veins Logo"
+                alt="KVS Cooper Vains Logo"
                 width={120}
                 height={28}
                 className="h-6 sm:h-7 w-auto object-contain"

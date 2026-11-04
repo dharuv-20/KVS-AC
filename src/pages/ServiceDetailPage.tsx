@@ -103,7 +103,7 @@ export const ServiceDetailPage: React.FC = () => {
           subtitleEn: 'Professional HVAC and cooling solutions by our own certified technician team.',
           subtitleHi: 'हमारी अपनी तकनीशियन टीम द्वारा पेशेवर कूलिंग समाधान।',
           image: '/images/hero-tech.jpg',
-          badge: 'KVS Copper Veins',
+          badge: 'KVS Cooper Vains',
           highlights: [],
         };
     }
@@ -121,8 +121,8 @@ export const ServiceDetailPage: React.FC = () => {
         "@type": "HVACBusiness",
         "name": COMPANY_CONFIG.name,
         "telephone": COMPANY_CONFIG.phone,
-        "url": "https://kvscopperveins.com",
-        "image": `https://kvscopperveins.com${info.image}`
+        "url": COMPANY_CONFIG.siteUrl,
+        "image": `${COMPANY_CONFIG.siteUrl}${info.image}`
       },
       "areaServed": [
         { "@type": "City", "name": "Gurugram" },
@@ -151,19 +151,19 @@ export const ServiceDetailPage: React.FC = () => {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://kvscopperveins.com/"
+          "item": `${COMPANY_CONFIG.siteUrl}/`
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Services",
-          "item": "https://kvscopperveins.com/#services"
+          "item": `${COMPANY_CONFIG.siteUrl}/#services`
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": language === 'en' ? info.titleEn : info.titleHi,
-          "item": `https://kvscopperveins.com/services/${slug}`
+          "item": `${COMPANY_CONFIG.siteUrl}/services/${slug}`
         }
       ]
     }
@@ -176,7 +176,7 @@ export const ServiceDetailPage: React.FC = () => {
         description={
           language === 'en'
             ? `${info.subtitleEn} Trusted HVAC engineering, genuine parts & fast technician dispatch. Call ${COMPANY_CONFIG.phoneDisplay}.`
-            : `${info.subtitleHi} केवीएस कॉपर वेन्स - प्रमाणित तकनीशियन और त्वरित सेवा। फोन ${COMPANY_CONFIG.phoneDisplay}।`
+            : `${info.subtitleHi} केवीएस कूपर वैन्स - प्रमाणित तकनीशियन और त्वरित सेवा। फोन ${COMPANY_CONFIG.phoneDisplay}।`
         }
         canonicalPath={`/services/${slug}`}
         ogImage={info.image}

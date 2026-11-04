@@ -200,7 +200,7 @@ export const translations = {
         phone: "Direct Phone Call",
         whatsapp: "WhatsApp Message",
       },
-      privacyConsent: "I agree to be contacted by KVS Copper Veins regarding this service request.",
+      privacyConsent: "I agree to be contacted by KVS Cooper Vains regarding this service request.",
       submitBtn: "Submit Service Enquiry",
       submitting: "Submitting Enquiry...",
       phoneOrWhatsApp: "Or speak to an engineer right now:",
@@ -219,22 +219,22 @@ export const translations = {
       },
       success: {
         title: "Enquiry Received Successfully!",
-        message: "Thank you for reaching out to KVS Copper Veins Integrated Solutions. Our technical team will review your requirements and call you shortly.",
-        note: "(This system is currently in pre-dispatch demo mode; you can also reach us immediately via the phone or WhatsApp buttons below)",
+        message: "Thank you for reaching out to KVS Cooper Vains Integrated Solutions. Our technical team will review your requirements and call you shortly.",
+        note: "Our technical team has received your enquiry and will contact you promptly. You can also reach us immediately via direct call or WhatsApp below.",
         newEnquiry: "Submit Another Request",
       }
     },
 
     // Footer
     footer: {
-      aboutText: "KVS Copper Veins Integrated Solutions provides professional HVAC and air-conditioning services for residential, commercial, and industrial facilities across Gurugram, Delhi, and Delhi NCR.",
+      aboutText: "KVS Cooper Vains Integrated Solutions provides professional HVAC and air-conditioning services for residential, commercial, and industrial facilities across Gurugram, Delhi, and Delhi NCR.",
       quickLinks: "Quick Navigation",
       residentialLinks: "Residential Services",
       commercialLinks: "Commercial & Industrial",
       contactInfo: "Contact & Location",
       address: "235/18, Khandsa Marg, Laxmi Garden, Gurugram, Haryana – 122001, India.",
       phone: "+91 7982890653",
-      copyright: "All rights reserved. KVS Copper Veins Integrated Solutions.",
+      copyright: "All rights reserved. KVS Cooper Vains Integrated Solutions.",
       privacyPolicy: "Privacy Policy",
       termsOfService: "Terms & Conditions",
       emergencyNotice: "Need emergency industrial chiller or server-room cooling support? Call directly.",
@@ -442,7 +442,7 @@ export const translations = {
         phone: "सीधी फोन कॉल",
         whatsapp: "व्हाट्सएप मैसेज",
       },
-      privacyConsent: "मैं इस सेवा अनुरोध के संबंध में केवीएस कॉपर वेन्स द्वारा संपर्क किए जाने की सहमति देता/देती हूँ।",
+      privacyConsent: "मैं इस सेवा अनुरोध के संबंध में केवीएस कूपर वैन्स द्वारा संपर्क किए जाने की सहमति देता/देती हूँ।",
       submitBtn: "सर्विस पूछताछ भेजें",
       submitting: "पूछताछ भेजी जा रही है...",
       phoneOrWhatsApp: "या सीधे किसी इंजीनियर से अभी बात करें:",
@@ -461,22 +461,22 @@ export const translations = {
       },
       success: {
         title: "पूछताछ सफलतापूर्वक प्राप्त हुई!",
-        message: "केवीएस कॉपर वेन्स इंटीग्रेटेड सॉल्यूशंस से संपर्क करने के लिए धन्यवाद। हमारी तकनीकी टीम आपकी आवश्यकता की समीक्षा कर शीघ्र ही कॉल करेगी।",
-        note: "(यह प्रणाली वर्तमान में डेमो मोड में है; आप नीचे दिए गए फोन या व्हाट्सएप बटन से भी तुरंत संपर्क कर सकते हैं)",
+        message: "केवीएस कूपर वैन्स इंटीग्रेटेड सॉल्यूशंस से संपर्क करने के लिए धन्यवाद। हमारी तकनीकी टीम आपकी आवश्यकता की समीक्षा कर शीघ्र ही कॉल करेगी।",
+        note: "हमारी तकनीकी टीम को आपकी पूछताछ प्राप्त हो चुकी है और वे जल्द ही आपसे संपर्क करेंगे। आप नीचे दिए गए फोन या व्हाट्सएप से भी तुरंत संपर्क कर सकते हैं।",
         newEnquiry: "दूसरी पूछताछ भेजें",
       }
     },
 
     // Footer
     footer: {
-      aboutText: "केवीएस कॉपर वेन्स इंटीग्रेटेड सॉल्यूशंस गुरुग्राम, दिल्ली और दिल्ली एनसीआर में आवासीय, वाणिज्यिक और औद्योगिक परिसरों के लिए पेशेवर एचवीएसी और एयर-कंडीशनिंग सेवाएं प्रदान करता है।",
+      aboutText: "केवीएस कूपर वैन्स इंटीग्रेटेड सॉल्यूशंस गुरुग्राम, दिल्ली और दिल्ली एनसीआर में आवासीय, वाणिज्यिक और औद्योगिक परिसरों के लिए पेशेवर एचवीएसी और एयर-कंडीशनिंग सेवाएं प्रदान करता है।",
       quickLinks: "त्वरित नेविगेशन",
       residentialLinks: "आवासीय सेवाएं",
       commercialLinks: "कमर्शियल एवं इंडस्ट्रियल",
       contactInfo: "संपर्क एवं पता",
       address: "235/18, खांडसा मार्ग, लक्ष्मी गार्डन, गुरुग्राम, हरियाणा – 122001, भारत।",
       phone: "+91 7982890653",
-      copyright: "सर्वाधिकार सुरक्षित। केवीएस कॉपर वेन्स इंटीग्रेटेड सॉल्यूशंस।",
+      copyright: "सर्वाधिकार सुरक्षित। केवीएस कूपर वैन्स इंटीग्रेटेड सॉल्यूशंस।",
       privacyPolicy: "गोपनीयता नीति",
       termsOfService: "नियम एवं शर्तें",
       emergencyNotice: "आपातकालीन इंडस्ट्रियल चिलर या सर्वर-रूम कूलिंग सहायता चाहिए? सीधे कॉल करें।",
