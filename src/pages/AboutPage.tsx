@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ShieldCheck, Users, Wrench, Phone, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -12,34 +13,54 @@ export const AboutPage: React.FC = () => {
   const { language, t, openBookingModal } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
-  const aboutSchema = useMemo(() => ({
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": language === 'en' ? `About ${COMPANY_CONFIG.name}` : `केवीएस कूपर वैन्स के बारे में`,
-    "url": `${COMPANY_CONFIG.siteUrl}/about`,
-    "description": `Learn about ${COMPANY_CONFIG.name}, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR.`,
-    "mainEntity": {
-      "@type": "Organization",
-      "name": COMPANY_CONFIG.name,
-      "alternateName": COMPANY_CONFIG.shortName,
-      "url": COMPANY_CONFIG.siteUrl,
-      "logo": `${COMPANY_CONFIG.siteUrl}/logo.png`,
-      "founder": {
-        "@type": "Person",
-        "name": COMPANY_CONFIG.founder.name,
-        "jobTitle": COMPANY_CONFIG.founder.roleEn,
-        "image": `${COMPANY_CONFIG.siteUrl}${COMPANY_CONFIG.founder.image}`
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "235/18, Khandsa Marg, Laxmi Garden",
-        "addressLocality": "Gurugram",
-        "addressRegion": "Haryana",
-        "postalCode": "122001",
-        "addressCountry": "IN"
+  const aboutSchema = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": language === 'en' ? `About ${COMPANY_CONFIG.name}` : `केवीएस कूपर वैन्स के बारे में`,
+      "url": `${COMPANY_CONFIG.siteUrl}/about`,
+      "description": `Learn about ${COMPANY_CONFIG.name}, founded by Krishna Chaudhary. Dedicated in-house HVAC technicians, ethical repairs, and commercial cooling excellence in Delhi NCR.`,
+      "mainEntity": {
+        "@type": "Organization",
+        "name": COMPANY_CONFIG.name,
+        "alternateName": COMPANY_CONFIG.shortName,
+        "url": COMPANY_CONFIG.siteUrl,
+        "logo": `${COMPANY_CONFIG.siteUrl}/logo.png`,
+        "founder": {
+          "@type": "Person",
+          "name": COMPANY_CONFIG.founder.name,
+          "jobTitle": COMPANY_CONFIG.founder.roleEn,
+          "image": `${COMPANY_CONFIG.siteUrl}${COMPANY_CONFIG.founder.image}`
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "235/18, Khandsa Marg, Laxmi Garden",
+          "addressLocality": "Gurugram",
+          "addressRegion": "Haryana",
+          "postalCode": "122001",
+          "addressCountry": "IN"
+        }
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${COMPANY_CONFIG.siteUrl}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About Us",
+          "item": `${COMPANY_CONFIG.siteUrl}/about`
+        }
+      ]
     }
-  }), [language]);
+  ], [language]);
 
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
@@ -65,6 +86,13 @@ export const AboutPage: React.FC = () => {
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 max-w-3xl">
+            {/* Visual Breadcrumb Trail */}
+            <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-3">
+              <Link to="/" className="hover:text-blue-400 transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-blue-300 font-semibold">{language === 'en' ? 'About Us' : 'हमारे बारे में'}</span>
+            </div>
+
             <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-blue-300 bg-white/10 border border-white/15 mb-4">
               {language === 'en' ? `About ${COMPANY_CONFIG.shortName}` : 'केवीएस कूपर वैन्स के बारे में'}
             </span>

@@ -5,6 +5,7 @@ import { COMPANY_CONFIG } from '../data/config';
 interface SEOProps {
   title?: string;
   description?: string;
+  keywords?: string;
   canonicalPath?: string;
   ogImage?: string;
   schema?: Record<string, any> | Array<Record<string, any>>;
@@ -13,6 +14,7 @@ interface SEOProps {
 export const SEO: React.FC<SEOProps> = ({
   title,
   description,
+  keywords,
   canonicalPath,
   ogImage = '/og-image.jpg',
   schema,
@@ -27,6 +29,10 @@ export const SEO: React.FC<SEOProps> = ({
   const finalDescription =
     description ||
     'Professional residential, commercial and industrial AC & HVAC services across Gurugram, Delhi and Delhi NCR. Split AC, VRV/VRF, Chillers, Gas Refilling, AC Repair & AMC by our own trained technicians.';
+
+  const finalKeywords =
+    keywords ||
+    'AC repair Gurugram, HVAC maintenance Delhi NCR, split AC jet service, AC gas charging R32, VRV VRF chillers, air conditioner repair near me, KVS Cooper Vains, Khandsa Marg Laxmi Garden AC mechanic';
 
   const finalCanonical = canonicalPath
     ? `${baseUrl}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`
@@ -52,6 +58,14 @@ export const SEO: React.FC<SEOProps> = ({
     // 2. Primary Meta Tags
     setMetaTag('name', 'description', finalDescription);
     setMetaTag('name', 'title', finalTitle);
+    setMetaTag('name', 'keywords', finalKeywords);
+    setMetaTag('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+
+    // Geo tags
+    setMetaTag('name', 'geo.region', 'IN-HR');
+    setMetaTag('name', 'geo.placename', 'Gurugram');
+    setMetaTag('name', 'geo.position', `${COMPANY_CONFIG.coordinates.lat};${COMPANY_CONFIG.coordinates.lng}`);
+    setMetaTag('name', 'ICBM', `${COMPANY_CONFIG.coordinates.lat}, ${COMPANY_CONFIG.coordinates.lng}`);
 
     // 3. Open Graph Tags
     setMetaTag('property', 'og:title', finalTitle);
@@ -76,7 +90,22 @@ export const SEO: React.FC<SEOProps> = ({
     }
     canonicalTag.setAttribute('href', finalCanonical);
 
-    // 6. JSON-LD Schema Markup
+    // 6. Hreflang Link Tags
+    const setHreflangTag = (lang: string, href: string) => {
+      let tag = document.querySelector(`link[rel="alternate"][hreflang="${lang}"]`);
+      if (!tag) {
+        tag = document.createElement('link');
+        tag.setAttribute('rel', 'alternate');
+        tag.setAttribute('hreflang', lang);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('href', href);
+    };
+    setHreflangTag('en-IN', finalCanonical);
+    setHreflangTag('hi-IN', finalCanonical);
+    setHreflangTag('x-default', finalCanonical);
+
+    // 7. JSON-LD Schema Markup
     const existingSchemaScript = document.getElementById('seo-json-ld');
     if (existingSchemaScript) {
       existingSchemaScript.remove();

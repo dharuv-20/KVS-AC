@@ -13,9 +13,15 @@ export const StickyMobileBar: React.FC = () => {
       initial={{ y: 80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.35, ease: 'easeOut' }}
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-3 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-2xl"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-3 py-1.5 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-2xl"
       aria-label="Quick mobile booking actions"
     >
+      {/* Live dispatch status ticker */}
+      <div className="flex items-center justify-center gap-1.5 pb-1.5 text-[9.5px] font-semibold text-slate-600">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <span>{language === 'en' ? 'Gurugram & Delhi NCR Service Desk' : 'गुरुग्राम एवं दिल्ली एनसीआर सेवा केंद्र'}</span>
+      </div>
+
       <div className="grid grid-cols-3 gap-2">
         {/* Direct Call */}
         <motion.a

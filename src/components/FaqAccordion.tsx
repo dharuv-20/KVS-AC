@@ -37,7 +37,7 @@ export const FaqAccordion: React.FC = () => {
             viewport={{ once: true, margin: '-60px' }}
             className="lg:col-span-7 space-y-3"
           >
-            {faqList.slice(0, 6).map((faq) => {
+            {faqList.slice(0, 8).map((faq) => {
               const isOpen = openId === faq.id;
 
               return (

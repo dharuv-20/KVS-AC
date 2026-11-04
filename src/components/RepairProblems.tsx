@@ -1,14 +1,105 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Check, ChevronRight, Wind, Droplets } from 'lucide-react';
+import { Check, ChevronRight, Wind, Droplets, Zap, Volume2, AlertCircle, Snowflake, Wrench, Sparkles, MessageSquare, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { repairProblems } from '../data/servicesData';
+import { getWhatsAppBookingUrl } from '../data/config';
 import { fadeInUp, staggerContainer, cardHover } from '../utils/motion';
+
+interface SymptomItem {
+  id: string;
+  icon: React.ComponentType<{ className?: string }>;
+  labelEn: string;
+  labelHi: string;
+  probableCauseEn: string;
+  probableCauseHi: string;
+  solutionEn: string;
+  solutionHi: string;
+  serviceSlug: string;
+  serviceName: string;
+}
+
+const triageSymptoms: SymptomItem[] = [
+  {
+    id: 'warm-air',
+    icon: Wind,
+    labelEn: 'Warm Air / No Cooling',
+    labelHi: 'गर्म हवा / कूलिंग नहीं',
+    probableCauseEn: 'Refrigerant gas micro-leak, weak dual capacitor, or clogged outdoor condenser fins.',
+    probableCauseHi: 'गैस लीकेज, कमजोर कैपेसिटर, या आउटडोर कॉइल में धूल व गंदगी।',
+    solutionEn: '400 PSI Nitrogen pressure leak test, genuine capacitor replacement & pure R32/R410A recharge.',
+    solutionHi: 'नाइट्रोजन टेस्ट द्वारा लीकेज रिपेयर, कैपेसिटर जांच एवं शुद्ध गैस चार्जिंग।',
+    serviceSlug: 'ac-repair',
+    serviceName: 'AC Diagnostics & Repair',
+  },
+  {
+    id: 'water-leak',
+    icon: Droplets,
+    labelEn: 'Water Dripping Indoors',
+    labelHi: 'कमरे में पानी टपकना',
+    probableCauseEn: 'Choked condensate drain tray, fungal slime build-up, or improper wall bracket tilt angle.',
+    probableCauseHi: 'ड्रेन ट्रे में काई, बंद ड्रेन पाइप या इंडोर यूनिट का गलत लेवल।',
+    solutionEn: 'High-pressure drain flush, fungal anti-microbial treatment & spirit-level slope alignment.',
+    solutionHi: 'प्रेशर पंप से ड्रेन लाइन की सफाई एवं स्पिरिट लेवल से सही ढलान सेटिंग।',
+    serviceSlug: 'ac-servicing-cleaning',
+    serviceName: 'AC Servicing & Jet Cleaning',
+  },
+  {
+    id: 'mcb-trip',
+    icon: Zap,
+    labelEn: 'Tripping MCB / Power Cut',
+    labelHi: 'एमसीबी ट्रिप / बिजली बंद',
+    probableCauseEn: 'Inverter PCB short circuit, compressor electrical winding fault, or voltage fluctuation.',
+    probableCauseHi: 'इन्वर्टर पीसीबी सर्किट शॉर्ट, कंप्रेसर वाइंडिंग अर्थिंग या हाई एम्पीयर।',
+    solutionEn: 'Multimeter resistance diagnostics, IPM sensor repair or component-level capacitor repair.',
+    solutionHi: 'डिजिटल मल्टीमीटर से सटीक सर्किट डायग्नोसिस एवं कंपोनेंट रिपेयर।',
+    serviceSlug: 'ac-repair',
+    serviceName: 'AC Repair & Diagnostics',
+  },
+  {
+    id: 'noise',
+    icon: Volume2,
+    labelEn: 'Loud Rattling / Vibration',
+    labelHi: 'तेज आवाज / कंपन',
+    probableCauseEn: 'Loose outdoor bracket rubber pads, broken blower fan blade, or worn motor ball bearings.',
+    probableCauseHi: 'आउटडोर स्टैंड का ढीला होना, ब्लोअर पंखुड़ी टूटना या मोटर बेयरिंग घिसना।',
+    solutionEn: 'Anti-vibration mount replacement, blower wheel dynamic rebalancing & OEM motor lubrication.',
+    solutionHi: 'वाइब्रेशन पैड फिटिंग, ब्लोअर बैलेंसिंग एवं मोटर लुब्रिकेशन।',
+    serviceSlug: 'ac-repair',
+    serviceName: 'AC Repair & Diagnostics',
+  },
+  {
+    id: 'smell',
+    icon: AlertCircle,
+    labelEn: 'Foul Odor / Low Airflow',
+    labelHi: 'दुर्गंध / कमजोर हवा',
+    probableCauseEn: 'Bacterial colonies on cooling coil, damp dust crust, or dirty evaporator blower.',
+    probableCauseHi: 'कूलिंग कॉइल पर फंगस और बैक्टीरिया का जमना या ब्लोअर चोक होना।',
+    solutionEn: 'Waterproof jacket power jet wash with foam descaler and coil sanitizer spray.',
+    solutionHi: 'वाटरप्रूफ जैकेट के साथ फोम डीस्केलिंग एवं जर्म-फ्री जेट वॉश।',
+    serviceSlug: 'ac-servicing-cleaning',
+    serviceName: 'AC Servicing & Jet Cleaning',
+  },
+  {
+    id: 'pipe-ice',
+    icon: Snowflake,
+    labelEn: 'Ice on Copper Pipes',
+    labelHi: 'कॉपर पाइप पर बर्फ',
+    probableCauseEn: 'Severe refrigerant shortage, blocked expansion capillary, or severely restricted return air.',
+    probableCauseHi: 'गैस की भारी कमी, कैपिलरी ब्लॉकेज या एयर फिल्टर पूरी तरह चोक होना।',
+    solutionEn: 'Electronic halogen leak detector check, dual-stage deep evacuation & precise charging by weight.',
+    solutionHi: 'इलेक्ट्रॉनिक लीक डिटेक्शन, डीप वैक्यूमिंग एवं वजन से शुद्ध गैस रिफिल।',
+    serviceSlug: 'gas-refilling',
+    serviceName: 'Gas Refilling & Leak Test',
+  },
+];
 
 export const RepairProblems: React.FC = () => {
   const { language, t, openBookingModal } = useLanguage();
   const [showAllProblems, setShowAllProblems] = useState(false);
   const [activeCategory, setActiveCategory] = useState<'all' | 'cooling' | 'leakage' | 'electrical' | 'mechanical'>('all');
+  const [selectedSymptom, setSelectedSymptom] = useState<SymptomItem>(triageSymptoms[0]);
   const shouldReduceMotion = useReducedMotion();
 
   const filtered = repairProblems.filter(p => activeCategory === 'all' || p.category === activeCategory);
@@ -99,12 +190,20 @@ export const RepairProblems: React.FC = () => {
               </li>
             </ul>
 
+            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+              <Link to="/services/ac-repair" className="font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1">
+                <span>{language === 'en' ? 'Diagnostics Protocol' : 'डायग्नोस्टिक्स प्रक्रिया'}</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+              <span className="text-slate-500 font-medium">Direct Inspection</span>
+            </div>
+
             <motion.button
               type="button"
               onClick={() => openBookingModal('AC Cooling & Airflow Repair')}
               whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-              className="mt-6 w-full py-2.5 rounded-full text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white transition-colors cursor-pointer"
+              className="mt-4 w-full py-2.5 rounded-full text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white transition-colors cursor-pointer"
             >
               {language === 'en' ? 'Book Cooling Fix' : 'कूलिंग रिपेयर बुक करें'}
             </motion.button>
@@ -163,16 +262,24 @@ export const RepairProblems: React.FC = () => {
                   <span className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                     <Check className="w-2.5 h-2.5 text-white" />
                   </span>
-                  <span>{language === 'en' ? 'Genuine spare parts guarantee' : 'असली स्पेयर पार्ट्स'}</span>
+                  <span>{language === 'en' ? 'Genuine OEM spare parts' : 'असली स्पेयर पार्ट्स'}</span>
                 </li>
               </ul>
+
+              <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between text-[11px]">
+                <Link to="/services/ac-servicing-cleaning" className="font-semibold text-white/90 hover:text-white flex items-center gap-1">
+                  <span>{language === 'en' ? 'Jet Service Details' : 'जेट सर्विस विवरण'}</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+                <span className="text-blue-100 font-mono">100% In-House</span>
+              </div>
 
               <motion.button
                 type="button"
                 onClick={() => openBookingModal()}
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-                className="mt-6 w-full py-3 rounded-full text-xs font-bold text-blue-600 bg-white hover:bg-slate-100 shadow-md transition-colors cursor-pointer"
+                className="mt-4 w-full py-3 rounded-full text-xs font-bold text-blue-600 bg-white hover:bg-slate-100 shadow-md transition-colors cursor-pointer"
               >
                 {t.hero.primaryCta}
               </motion.button>
@@ -227,17 +334,150 @@ export const RepairProblems: React.FC = () => {
               </li>
             </ul>
 
+            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+              <Link to="/services/gas-refilling" className="font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1">
+                <span>{language === 'en' ? 'Nitrogen Test Protocol' : 'नाइट्रोजन टेस्ट प्रक्रिया'}</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+              <span className="text-slate-400">Pure R32 / R410A</span>
+            </div>
+
             <motion.button
               type="button"
               onClick={() => openBookingModal('AC Leakage & Gas Inspection')}
               whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-              className="mt-6 w-full py-2.5 rounded-full text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white transition-colors cursor-pointer"
+              className="mt-4 w-full py-2.5 rounded-full text-xs font-bold text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white transition-colors cursor-pointer"
             >
               {language === 'en' ? 'Book Leak Inspection' : 'लीक जांच बुक करें'}
             </motion.button>
           </motion.div>
 
+        </motion.div>
+
+        {/* Interactive Instant AC Diagnostic & Triage Tool */}
+        <motion.div
+          variants={fadeInUp(0.1, 24)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="max-w-5xl mx-auto mb-14 bg-white rounded-3xl p-6 sm:p-9 border border-slate-200 shadow-sm"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-100">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-1">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{language === 'en' ? 'Interactive AC Symptom Checker' : 'त्वरित एसी समस्या डायग्नोस्टिक'}</span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-extrabold text-navy-900">
+                {language === 'en' ? 'What symptom is your AC showing right now?' : 'आपका एसी क्या लक्षण दिखा रहा है?'}
+              </h3>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-semibold bg-emerald-50 px-3 py-1 rounded-full self-start sm:self-center">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>{language === 'en' ? 'Technicians on Duty in Gurugram' : 'गुरुग्राम में तकनीशियन उपलब्ध'}</span>
+            </div>
+          </div>
+
+          {/* Symptom Selection Chips */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5 mb-6">
+            {triageSymptoms.map((sym) => {
+              const isSelected = selectedSymptom.id === sym.id;
+              const IconComp = sym.icon;
+              return (
+                <button
+                  key={sym.id}
+                  type="button"
+                  onClick={() => setSelectedSymptom(sym)}
+                  className={`p-3 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
+                    isSelected
+                      ? 'bg-navy-950 text-white border-navy-900 shadow-md ring-2 ring-blue-500/50'
+                      : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border-slate-200'
+                  }`}
+                >
+                  <IconComp className={`w-5 h-5 mb-2 ${isSelected ? 'text-blue-400' : 'text-blue-600'}`} />
+                  <span className="text-xs font-bold leading-snug">
+                    {language === 'en' ? sym.labelEn : sym.labelHi}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Symptom Diagnosis Card */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedSymptom.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25 }}
+              className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200/90 grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
+            >
+              <div className="md:col-span-8 space-y-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-mono font-bold text-blue-600 bg-blue-100/70 px-2.5 py-0.5 rounded-full">
+                    {language === 'en' ? 'DIAGNOSTIC REPORT' : 'डायग्नोस्टिक रिपोर्ट'}
+                  </span>
+                  <span className="text-xs text-slate-500 font-medium">
+                    {language === 'en' ? 'Direct Technical Inspection' : 'सीधा तकनीकी निरीक्षण'}
+                  </span>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-bold text-navy-900">
+                    {language === 'en' ? 'Probable Technical Cause:' : 'संभावित तकनीकी कारण:'}
+                  </h4>
+                  <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                    {language === 'en' ? selectedSymptom.probableCauseEn : selectedSymptom.probableCauseHi}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-bold text-navy-900">
+                    {language === 'en' ? 'Engineering Resolution Standard:' : 'इंजीनियरिंग समाधान मानक:'}
+                  </h4>
+                  <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                    {language === 'en' ? selectedSymptom.solutionEn : selectedSymptom.solutionHi}
+                  </p>
+                </div>
+
+                <div className="pt-1">
+                  <Link
+                    to={`/services/${selectedSymptom.serviceSlug}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors"
+                  >
+                    <span>View {selectedSymptom.serviceName} details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Action CTA Box */}
+              <div className="md:col-span-4 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs space-y-2.5">
+                <div className="text-xs font-bold text-navy-900 text-center">
+                  {language === 'en' ? 'Direct Booking & Support' : 'सीधी बुकिंग व सहायता'}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => openBookingModal(language === 'en' ? selectedSymptom.labelEn : selectedSymptom.labelHi)}
+                  className="w-full py-2.5 px-4 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <Wrench className="w-3.5 h-3.5" />
+                  <span>{language === 'en' ? 'Book Fix for this Issue' : 'इस समस्या के लिए बुक करें'}</span>
+                </button>
+                <a
+                  href={getWhatsAppBookingUrl(`Hi KVS, my AC has this issue: ${selectedSymptom.labelEn}. Please connect regarding inspection in Gurugram.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2 px-4 rounded-full text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>{language === 'en' ? 'Connect on WhatsApp' : 'व्हाट्सएप पर संपर्क करें'}</span>
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
 
         {/* Toggleable All 15 Specific AC Problems Drawer */}

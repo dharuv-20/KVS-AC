@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Sparkles, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { fadeInUp, staggerContainer } from '../utils/motion';
 
@@ -118,6 +118,21 @@ export const ServiceCategories: React.FC = () => {
                 <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
                   {language === 'en' ? card.descEn : card.descHi}
                 </p>
+
+                <div className="mt-3 flex flex-wrap gap-1.5 text-[10.5px] font-semibold text-slate-600">
+                  <span className="bg-white border border-slate-200/90 px-2.5 py-0.5 rounded-full text-blue-700 flex items-center gap-1">
+                    <Check className="w-3 h-3 text-blue-600" />
+                    <span>In-House Staff</span>
+                  </span>
+                  <span className="bg-white border border-slate-200/90 px-2.5 py-0.5 rounded-full text-emerald-700 flex items-center gap-1">
+                    <Check className="w-3 h-3 text-emerald-600" />
+                    <span>Diagnostics Standard</span>
+                  </span>
+                  <span className="bg-white border border-slate-200/90 px-2.5 py-0.5 rounded-full text-slate-700 flex items-center gap-1">
+                    <Check className="w-3 h-3 text-slate-600" />
+                    <span>Genuine OEM Parts</span>
+                  </span>
+                </div>
               </div>
 
               <div className="mt-5 rounded-2xl overflow-hidden h-48 sm:h-56 relative bg-slate-200">
@@ -130,14 +145,25 @@ export const ServiceCategories: React.FC = () => {
                   height={320}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                <Link
-                  to={card.link}
-                  className="absolute bottom-3 left-3 text-xs font-bold text-white bg-navy-950/85 backdrop-blur-sm px-3.5 py-1.5 rounded-full hover:bg-blue-600 transition-all flex items-center gap-1.5 shadow-sm group-hover:bg-blue-600"
-                >
-                  <span>{language === 'en' ? card.linkTextEn : card.linkTextHi}</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
+                  <Link
+                    to={card.link}
+                    className="text-xs font-bold text-white bg-navy-950/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full hover:bg-blue-600 transition-all flex items-center gap-1.5 shadow-sm group-hover:bg-blue-600"
+                  >
+                    <span>{language === 'en' ? card.linkTextEn : card.linkTextHi}</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={() => openBookingModal(language === 'en' ? card.titleEn : card.titleHi)}
+                    className="text-xs font-bold text-navy-950 bg-white/95 hover:bg-white backdrop-blur-sm px-3 py-1.5 rounded-full transition-colors shadow-sm cursor-pointer whitespace-nowrap"
+                  >
+                    {language === 'en' ? 'Book Now' : 'बुक करें'}
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}

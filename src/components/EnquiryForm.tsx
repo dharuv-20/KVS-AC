@@ -34,7 +34,16 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
   useEffect(() => {
     if (initialServiceCategory) {
-      setFormData(prev => ({ ...prev, serviceCategory: initialServiceCategory }));
+      if (initialServiceCategory.startsWith('Service in ')) {
+        const loc = initialServiceCategory.replace('Service in ', '');
+        setFormData(prev => ({
+          ...prev,
+          location: loc,
+          serviceCategory: prev.serviceCategory || 'AC Repair Services'
+        }));
+      } else {
+        setFormData(prev => ({ ...prev, serviceCategory: initialServiceCategory }));
+      }
     }
   }, [initialServiceCategory]);
 

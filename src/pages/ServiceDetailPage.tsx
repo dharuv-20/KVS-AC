@@ -192,6 +192,15 @@ export const ServiceDetailPage: React.FC = () => {
           className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 overflow-hidden shadow-2xl border border-navy-800"
         >
           <div className="relative z-10 max-w-3xl">
+            {/* Visual Breadcrumb Trail */}
+            <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-3">
+              <Link to="/" className="hover:text-blue-400 transition-colors">Home</Link>
+              <span>/</span>
+              <Link to="/#services" className="hover:text-blue-400 transition-colors">Services</Link>
+              <span>/</span>
+              <span className="text-blue-300 font-semibold truncate max-w-[200px] sm:max-w-none">{language === 'en' ? info.titleEn : info.titleHi}</span>
+            </div>
+
             <Link
               to="/"
               className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-blue-400 transition-colors mb-4"

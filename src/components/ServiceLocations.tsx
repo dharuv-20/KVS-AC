@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { MapPin, Phone, MessageSquare, Navigation, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, MessageSquare, Navigation, ExternalLink, Clock, ShieldCheck, CheckCircle2, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { COMPANY_CONFIG, getWhatsAppBookingUrl } from '../data/config';
 import { fadeInUp } from '../utils/motion';
 
+interface LocalityItem {
+  id: string;
+  name: string;
+  zone: string;
+  pincode: string;
+  coverage: string;
+}
+
+const ncrLocalities: LocalityItem[] = [
+  { id: 'khandsa', name: 'Khandsa Marg & Laxmi Garden', zone: 'Gurugram HQ', pincode: '122001', coverage: 'Direct HQ service desk for repairs, diagnostics & jet servicing.' },
+  { id: 'dlf', name: 'DLF Phase 1, 2, 3, 4, 5', zone: 'Gurugram East', pincode: '122002', coverage: 'Luxury apartments, villas, and commercial multi-split VRVs.' },
+  { id: 'cyber-city', name: 'DLF Cyber City & Cyber Hub', zone: 'Commercial Hub', pincode: '122002', coverage: 'Corporate offices, server-room precision cooling, and cassette ACs.' },
+  { id: 'golf-course', name: 'Golf Course Rd & Sector 54–57', zone: 'Gurugram South', pincode: '122011', coverage: 'High-rise residential condos, central VRF, and inverter ACs.' },
+  { id: 'sohna-road', name: 'Sohna Road & Sector 47–50', zone: 'Gurugram Central', pincode: '122003', coverage: 'Gated societies, retail showrooms, and residential AMC visits.' },
+  { id: 'sector-14', name: 'Sector 14, 15, 17 & Old Gurgaon', zone: 'Gurugram North', pincode: '122001', coverage: 'Split AC, window AC repair, and copper pipe gas leak fixing.' },
+  { id: 'new-gurgaon', name: 'New Gurgaon (Sec 81–95) & Dwarka Exp', zone: 'Gurugram West', pincode: '122004', coverage: 'New society installations, copper piping laying, and jet servicing.' },
+  { id: 'south-delhi', name: 'South Delhi (GK, Saket, Vasant Kunj)', zone: 'Delhi NCR', pincode: '110017', coverage: 'Independent homes, clinics, and commercial VRV plant servicing.' },
+  { id: 'noida', name: 'Noida (Sec 18, 62, Expressway)', zone: 'Delhi NCR', pincode: '201301', coverage: 'Corporate facilities, IT server rooms, and industrial chillers.' },
+];
+
 export const ServiceLocations: React.FC = () => {
   const { language, openBookingModal } = useLanguage();
+  const [selectedLocality, setSelectedLocality] = useState<LocalityItem>(ncrLocalities[0]);
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -91,6 +112,99 @@ export const ServiceLocations: React.FC = () => {
               >
                 <span>{language === 'en' ? 'Book Online' : 'ऑनलाइन बुक करें'}</span>
               </motion.button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Interactive Gurugram & Delhi NCR Locality Service Hub & Rapid Dispatch Checker */}
+        <motion.div
+          variants={fadeInUp(0.1, 24)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="bg-white rounded-3xl p-6 sm:p-9 border border-slate-200/90 shadow-sm space-y-6"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-1">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>{language === 'en' ? 'Local Service Coverage Directory' : 'स्थानीय सेवा कवरेज डायरेक्टरी'}</span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-extrabold text-navy-900">
+                {language === 'en' ? 'Check Service Availability in Your Area' : 'अपने क्षेत्र में सेवा उपलब्धता जांचें'}
+              </h3>
+            </div>
+            <div className="text-xs text-slate-500 font-medium">
+              HQ Hub: <strong className="text-navy-900 font-bold">Khandsa Marg, Laxmi Garden (Gurugram)</strong>
+            </div>
+          </div>
+
+          {/* Locality Grid Selector */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2.5">
+            {ncrLocalities.map((loc) => {
+              const isSelected = selectedLocality.id === loc.id;
+              return (
+                <button
+                  key={loc.id}
+                  type="button"
+                  onClick={() => setSelectedLocality(loc)}
+                  className={`p-3 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
+                    isSelected
+                      ? 'bg-navy-950 text-white border-navy-900 shadow-md ring-2 ring-blue-500/40'
+                      : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border-slate-200/80'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400">
+                      {loc.zone}
+                    </span>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${isSelected ? 'bg-white/10 text-white' : 'bg-slate-200/80 text-slate-600'}`}>
+                      {loc.pincode}
+                    </span>
+                  </div>
+                  <div className="text-xs font-bold mt-1.5 leading-snug">
+                    {loc.name}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Locality Dispatch Status Box */}
+          <div className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-xs font-bold text-navy-900 uppercase tracking-wide">
+                  Service Area: {selectedLocality.name}
+                </span>
+                <span className="text-xs text-blue-700 font-semibold bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
+                  {language === 'en' ? 'Direct Service Coverage' : 'नियमित सेवा क्षेत्र'}
+                </span>
+              </div>
+              <p className="text-xs text-slate-600">
+                {selectedLocality.coverage}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => openBookingModal(`Service in ${selectedLocality.name}`)}
+                className="px-5 py-2.5 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+              >
+                <MapPin className="w-3.5 h-3.5" />
+                <span>{language === 'en' ? `Book in ${selectedLocality.name.split(' ')[0]}` : 'इस क्षेत्र में बुक करें'}</span>
+              </button>
+              <a
+                href={getWhatsAppBookingUrl(`Hello KVS, I need AC technician service at ${selectedLocality.name} (${selectedLocality.pincode}). Please check slot availability.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-full text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
+                <span>WhatsApp</span>
+              </a>
             </div>
           </div>
         </motion.div>

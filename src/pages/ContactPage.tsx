@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Phone, MessageSquare, MapPin, Navigation } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,40 +12,60 @@ export const ContactPage: React.FC = () => {
   const { language, t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
-  const contactSchema = useMemo(() => ({
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": language === 'en' ? `Contact ${COMPANY_CONFIG.shortName}` : `केवीएस कूपर वैन्स से संपर्क करें`,
-    "url": `${COMPANY_CONFIG.siteUrl}/contact`,
-    "description": `Get in touch with ${COMPANY_CONFIG.name} for residential, commercial, and industrial AC and HVAC services in Gurugram and Delhi NCR.`,
-    "mainEntity": {
-      "@type": "HVACBusiness",
-      "name": COMPANY_CONFIG.name,
-      "telephone": COMPANY_CONFIG.phone,
-      "url": COMPANY_CONFIG.siteUrl,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "235/18, Khandsa Marg, Laxmi Garden",
-        "addressLocality": "Gurugram",
-        "addressRegion": "Haryana",
-        "postalCode": "122001",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": COMPANY_CONFIG.coordinates.lat,
-        "longitude": COMPANY_CONFIG.coordinates.lng
-      },
-      "hasMap": COMPANY_CONFIG.googleMapsUrl,
-      "contactPoint": {
-        "@type": "ContactPoint",
+  const contactSchema = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": language === 'en' ? `Contact ${COMPANY_CONFIG.shortName}` : `केवीएस कूपर वैन्स से संपर्क करें`,
+      "url": `${COMPANY_CONFIG.siteUrl}/contact`,
+      "description": `Get in touch with ${COMPANY_CONFIG.name} for residential, commercial, and industrial AC and HVAC services in Gurugram and Delhi NCR.`,
+      "mainEntity": {
+        "@type": "HVACBusiness",
+        "name": COMPANY_CONFIG.name,
         "telephone": COMPANY_CONFIG.phone,
-        "contactType": "customer service",
-        "areaServed": "IN",
-        "availableLanguage": ["English", "Hindi"]
+        "url": COMPANY_CONFIG.siteUrl,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "235/18, Khandsa Marg, Laxmi Garden",
+          "addressLocality": "Gurugram",
+          "addressRegion": "Haryana",
+          "postalCode": "122001",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": COMPANY_CONFIG.coordinates.lat,
+          "longitude": COMPANY_CONFIG.coordinates.lng
+        },
+        "hasMap": COMPANY_CONFIG.googleMapsUrl,
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": COMPANY_CONFIG.phone,
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi"]
+        }
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${COMPANY_CONFIG.siteUrl}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact Us",
+          "item": `${COMPANY_CONFIG.siteUrl}/contact`
+        }
+      ]
     }
-  }), [language]);
+  ], [language]);
 
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-[#F8F9FB] overflow-hidden">
@@ -68,6 +89,13 @@ export const ContactPage: React.FC = () => {
           className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 text-center max-w-5xl mx-auto overflow-hidden shadow-2xl border border-navy-800"
         >
           <div className="relative z-10 max-w-2xl mx-auto space-y-3">
+            {/* Visual Breadcrumb Trail */}
+            <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400 mb-2">
+              <Link to="/" className="hover:text-blue-400 transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-blue-300 font-semibold">{language === 'en' ? 'Contact Us' : 'संपर्क करें'}</span>
+            </div>
+
             <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-blue-300 bg-white/10 border border-white/15">
               {language === 'en' ? 'Get In Touch' : 'संपर्क करें'}
             </span>

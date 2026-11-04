@@ -40,7 +40,7 @@ export const CustomerReviews: React.FC = () => {
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <span className="font-extrabold ml-1">4.9 ★</span>
+              <span className="font-extrabold ml-1">4.9 / 5.0</span>
               <span className="text-slate-500 font-normal">| {language === 'en' ? 'Verified Experience' : 'सत्यापित अनुभव'}</span>
             </div>
 

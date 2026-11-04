@@ -12,7 +12,7 @@ import { ServiceLocations } from '../components/ServiceLocations';
 import { EnquiryForm } from '../components/EnquiryForm';
 import { SEO } from '../components/SEO';
 import { COMPANY_CONFIG } from '../data/config';
-import { faqList } from '../data/servicesData';
+import { faqList, indianReviewsList } from '../data/servicesData';
 import { useLanguage } from '../context/LanguageContext';
 
 export const HomePage: React.FC = () => {
@@ -71,7 +71,44 @@ export const HomePage: React.FC = () => {
         "reviewCount": "128",
         "bestRating": "5",
         "worstRating": "1"
-      }
+      },
+      "review": indianReviewsList.slice(0, 5).map(r => ({
+        "@type": "Review",
+        "author": { "@type": "Person", "name": r.name },
+        "datePublished": "2026-10-15",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": r.rating,
+          "bestRating": "5"
+        },
+        "reviewBody": r.reviewEn
+      }))
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": language === 'en' ? "How to Book Professional AC Repair Service in Gurugram" : "गुरुग्राम में एसी रिपेयर कैसे बुक करें",
+      "description": "Step-by-step guide to booking an in-house HVAC engineer with KVS Cooper Vains in Gurugram & Delhi NCR.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Select AC Issue or Service",
+          "text": "Choose your AC type (Split, Window, Inverter, Cassette) and problem symptom (No Cooling, Gas Leak, Water Dripping, PCB error)."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Share Location in Gurugram or NCR",
+          "text": "Provide your sector or locality (e.g. DLF, Cyber City, Golf Course Road, Khandsa, Sohna Road) to schedule technician visit."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "In-House Technician Inspection",
+          "text": "Our vetted engineer arrives with digital manifold gauges, explains diagnostic findings upfront, and repairs with genuine OEM parts."
+        }
+      ]
     },
     {
       "@context": "https://schema.org",
