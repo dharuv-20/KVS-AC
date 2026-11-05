@@ -24,7 +24,7 @@ export const FaqAccordion: React.FC = () => {
 
   return (
     <section id="faq" className="py-16 md:py-24 bg-white border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
         
         {/* 2-Column Exact Layout matching Reference Screenshot */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">

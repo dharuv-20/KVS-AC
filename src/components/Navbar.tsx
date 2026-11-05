@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
         style={{ scaleX: scrollYProgress, transformOrigin: '0%' }}
         className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-blue-500 via-copper to-blue-400 z-50 pointer-events-none"
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
         <div
           className={`flex items-center justify-between rounded-full px-4 sm:px-6 py-2 transition-all ${
             isScrolled
@@ -300,7 +300,7 @@ export const Navbar: React.FC = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="lg:hidden max-w-7xl mx-auto px-4 sm:px-6 mt-2"
+            className="lg:hidden max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16 mt-2"
           >
             <div className="bg-white rounded-3xl p-5 shadow-2xl border border-slate-200 space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">

@@ -80,7 +80,7 @@ export const ContactPage: React.FC = () => {
         schema={contactSchema}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16 mb-12">
         {/* Enclosed Dark Hero Banner */}
         <motion.div
           initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98 }}
@@ -119,7 +119,7 @@ export const ContactPage: React.FC = () => {
 
       {/* Main Content: Info Cards & Form */}
       <section className="py-12 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">
             
             {/* Left Column: Direct Contact Info (Col 5) */}

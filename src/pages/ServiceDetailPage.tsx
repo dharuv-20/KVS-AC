@@ -183,7 +183,7 @@ export const ServiceDetailPage: React.FC = () => {
         schema={serviceSchema}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16 mb-12">
         {/* Enclosed Dark Hero Banner */}
         <motion.div
           initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98 }}
@@ -250,7 +250,7 @@ export const ServiceDetailPage: React.FC = () => {
 
       {/* Scope Breakdown */}
       <section className="py-12 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
           <div className="max-w-3xl mb-8">
             <h2 className="text-xl sm:text-2xl font-extrabold text-navy-900">
               {language === 'en' ? 'Service Scope & Technical Capabilities' : 'सेवा का दायरा एवं तकनीकी क्षमताएं'}
@@ -304,7 +304,7 @@ export const ServiceDetailPage: React.FC = () => {
 
       {/* Embedded Form Section */}
       <section className="py-16 md:py-20 bg-[#F8F9FB]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="inline-block px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200 mb-3">
               {language === 'en' ? 'Direct Booking' : 'सीधी बुकिंग'}

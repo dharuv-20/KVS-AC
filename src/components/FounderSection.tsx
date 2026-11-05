@@ -16,7 +16,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ variant = 'light
 
   return (
     <section className={`py-16 md:py-24 border-t overflow-hidden ${variant === 'dark' ? 'bg-[#0c1626] border-navy-800 text-white' : 'bg-white border-slate-100 text-navy-950'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
         
         {/* Main 12-Column Responsive Card */}
         <motion.div

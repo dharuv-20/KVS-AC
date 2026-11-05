@@ -42,7 +42,7 @@ export default {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
-        '7xl': '1480px',
+        '7xl': '1180px',
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(16, 29, 50, 0.06)',

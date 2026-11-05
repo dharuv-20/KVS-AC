@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="pt-24 pb-10 px-4 sm:px-6 bg-[#F8F9FB] overflow-hidden">
+    <section className="pt-24 pb-10 px-4 sm:px-8 lg:px-14 xl:px-16 bg-[#F8F9FB] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Enclosed Rounded Dark Card Container */}

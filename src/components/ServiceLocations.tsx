@@ -32,7 +32,7 @@ export const ServiceLocations: React.FC = () => {
 
   return (
     <section id="locations" className="py-16 md:py-24 bg-[#F8F9FB] border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16 space-y-10">
         
         {/* Large Rounded Container matching the Reference Family Banner */}
         <motion.div

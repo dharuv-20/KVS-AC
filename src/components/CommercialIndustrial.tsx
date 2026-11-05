@@ -13,7 +13,7 @@ export const CommercialIndustrial: React.FC = () => {
       <div className="absolute top-0 right-0 w-96 h-96 bg-copper/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-ice/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-14 text-left">

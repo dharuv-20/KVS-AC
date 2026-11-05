@@ -12,7 +12,7 @@ export const ProjectsGallery: React.FC = () => {
 
   return (
     <section id="projects" className="py-16 md:py-24 bg-[#F8F9FB] border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
         
         {/* 2-Column Section Header matching Reference Image */}
         <motion.div

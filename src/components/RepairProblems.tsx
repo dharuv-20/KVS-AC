@@ -106,7 +106,7 @@ export const RepairProblems: React.FC = () => {
 
   return (
     <section id="repair" className="py-16 md:py-24 bg-[#F8F9FB] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-16">
         
         {/* Section Header */}
         <motion.div
