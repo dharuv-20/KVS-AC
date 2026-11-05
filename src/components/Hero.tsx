@@ -43,8 +43,8 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="pt-24 pb-10 px-4 sm:px-6 lg:px-8 bg-[#F8F9FB] overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section className="pt-24 pb-10 px-4 sm:px-6 bg-[#F8F9FB] overflow-hidden">
+      <div className="max-w-7xl mx-auto">
         
         {/* Enclosed Rounded Dark Card Container */}
         <motion.div
@@ -123,7 +123,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Grid Layout: Balanced & Centered */}
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10 lg:p-12">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8 lg:p-10">
             
             {/* Left Content Column (Cols 7) with Choreographed Entrance */}
             <motion.div

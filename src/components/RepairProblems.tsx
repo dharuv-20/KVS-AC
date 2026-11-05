@@ -106,7 +106,7 @@ export const RepairProblems: React.FC = () => {
 
   return (
     <section id="repair" className="py-16 md:py-24 bg-[#F8F9FB] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <motion.div
@@ -140,7 +140,7 @@ export const RepairProblems: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center max-w-5xl mx-auto mb-14"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center w-full mb-14"
         >
           {/* Card 1 (Left White Card) */}
           <motion.div
@@ -361,7 +361,7 @@ export const RepairProblems: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="max-w-5xl mx-auto mb-14 bg-white rounded-3xl p-6 sm:p-9 border border-slate-200 shadow-sm"
+          className="w-full mb-14 bg-white rounded-3xl p-6 sm:p-9 border border-slate-200 shadow-sm"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-100">
             <div>

@@ -8,7 +8,7 @@ export const ServicingCleaning: React.FC = () => {
 
   return (
     <section id="servicing" className="py-16 md:py-24 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-14">

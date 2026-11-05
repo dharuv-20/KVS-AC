@@ -169,7 +169,7 @@ export const HomePage: React.FC = () => {
 
       {/* 11. Contact & Lead Generation Form Section */}
       <section id="contact-section" className="py-16 md:py-24 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="inline-block px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200 mb-3">
               {t.contact.badge}

@@ -12,7 +12,7 @@ export const ProjectsGallery: React.FC = () => {
 
   return (
     <section id="projects" className="py-16 md:py-24 bg-[#F8F9FB] border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* 2-Column Section Header matching Reference Image */}
         <motion.div
@@ -20,7 +20,7 @@ export const ProjectsGallery: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 max-w-5xl mx-auto"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 w-full"
         >
           <div className="max-w-md">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight leading-tight">
@@ -51,7 +51,7 @@ export const ProjectsGallery: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-10"
         >
           {featured.map((proj, idx) => (
             <motion.div

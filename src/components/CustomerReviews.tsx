@@ -23,7 +23,7 @@ export const CustomerReviews: React.FC = () => {
 
   return (
     <section id="reviews" className="py-16 md:py-24 bg-[#F8F9FB] border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header with Left/Right Controls and No Total Counts */}
         <motion.div
@@ -31,7 +31,7 @@ export const CustomerReviews: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 max-w-6xl mx-auto"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 w-full"
         >
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-3 shadow-xs">
@@ -92,7 +92,7 @@ export const CustomerReviews: React.FC = () => {
         {/* Horizontal Scrolling Track of All Reviews */}
         <div
           ref={scrollContainerRef}
-          className="flex items-stretch gap-6 overflow-x-auto pb-6 pt-2 px-1 max-w-6xl mx-auto scroll-smooth snap-x snap-mandatory"
+          className="flex items-stretch gap-6 overflow-x-auto pb-6 pt-2 px-1 w-full scroll-smooth snap-x snap-mandatory"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {indianReviewsList.map((rev) => (

@@ -17,7 +17,7 @@ export const FindExpertBanner: React.FC = () => {
 
   return (
     <section className="py-10 px-4 sm:px-6 lg:px-8 bg-[#F8F9FB] overflow-hidden">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         
         {/* Enclosed Dark Rounded Card (Exact Match to Reference Banner) */}
         <motion.div

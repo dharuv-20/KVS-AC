@@ -41,6 +41,9 @@ export default {
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
+      maxWidth: {
+        '7xl': '1480px',
+      },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(16, 29, 50, 0.06)',
         'hover': '0 12px 30px -4px rgba(16, 29, 50, 0.12)',

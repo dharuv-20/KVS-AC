@@ -34,7 +34,7 @@ export const WhyChooseUs: React.FC = () => {
 
   return (
     <section className="py-16 md:py-24 bg-white border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Heading matching Reference Image */}
         <motion.div
@@ -65,7 +65,7 @@ export const WhyChooseUs: React.FC = () => {
         </motion.div>
 
         {/* 2-Column Exact Composition from Reference */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">
           
           {/* Left Column: Interactive Feature Stack with Smooth Transitions (Cols 6) */}
           <div className="lg:col-span-6 space-y-3.5">

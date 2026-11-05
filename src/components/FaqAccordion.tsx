@@ -24,10 +24,10 @@ export const FaqAccordion: React.FC = () => {
 
   return (
     <section id="faq" className="py-16 md:py-24 bg-white border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* 2-Column Exact Layout matching Reference Screenshot */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">
           
           {/* Left Column: Accordion Rows (Cols 7) */}
           <motion.div

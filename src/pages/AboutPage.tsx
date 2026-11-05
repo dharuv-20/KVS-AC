@@ -75,7 +75,7 @@ export const AboutPage: React.FC = () => {
         schema={aboutSchema}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
         {/* Enclosed Dark Hero Banner matching Homepage style */}
         <motion.div
           initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98 }}
@@ -118,13 +118,13 @@ export const AboutPage: React.FC = () => {
 
       {/* 3 Core Pillars with Staggered Entrance */}
       <section className="py-12 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             variants={staggerContainer(0.12, 0.05)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full"
           >
             <motion.div
               variants={fadeInUp(0, 20)}
@@ -196,7 +196,7 @@ export const AboutPage: React.FC = () => {
       <WhyChooseUs />
 
       {/* CTA Card matching Reference Banner */}
-      <div className="py-12 max-w-5xl mx-auto px-4 w-full">
+      <div className="py-12 max-w-7xl mx-auto px-4 sm:px-6 w-full">
         <motion.div
           variants={fadeInUp(0, 24)}
           initial="hidden"

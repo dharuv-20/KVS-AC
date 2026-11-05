@@ -62,7 +62,7 @@ export const ServiceCategories: React.FC = () => {
 
   return (
     <section className="py-16 md:py-24 bg-white border-t border-slate-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Heading */}
         <motion.div
@@ -98,7 +98,7 @@ export const ServiceCategories: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full"
         >
           {categories.map((card, idx) => (
             <motion.div
@@ -175,7 +175,7 @@ export const ServiceCategories: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="mt-8 max-w-5xl mx-auto bg-blue-600 text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden"
+          className="mt-8 w-full bg-blue-600 text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden"
         >
           <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-white/10 rounded-full blur-2xl pointer-events-none" />
 

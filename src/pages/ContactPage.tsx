@@ -80,13 +80,13 @@ export const ContactPage: React.FC = () => {
         schema={contactSchema}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
         {/* Enclosed Dark Hero Banner */}
         <motion.div
           initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 text-center max-w-5xl mx-auto overflow-hidden shadow-2xl border border-navy-800"
+          className="relative rounded-[32px] sm:rounded-[40px] bg-gradient-to-br from-navy-950 via-[#101D32] to-[#15233A] text-white p-8 sm:p-14 lg:p-16 text-center w-full overflow-hidden shadow-2xl border border-navy-800"
         >
           <div className="relative z-10 max-w-2xl mx-auto space-y-3">
             {/* Visual Breadcrumb Trail */}
@@ -119,8 +119,8 @@ export const ContactPage: React.FC = () => {
 
       {/* Main Content: Info Cards & Form */}
       <section className="py-12 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">
             
             {/* Left Column: Direct Contact Info (Col 5) */}
             <motion.div
